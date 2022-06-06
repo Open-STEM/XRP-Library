@@ -1,8 +1,7 @@
-
 # Write your code here :-)
 import rotaryio
 
-class Encoder():
+class encoder():
 
     def __init__(self, a, b, ticks, flip=False):
         self.ticksPerRev = ticks
@@ -11,7 +10,9 @@ class Encoder():
         print("initialized")
 
     def getPos(self, inTicks=False, roundToo=3):
-        #print("getPos")
+        """
+            inTicks     boolean     True ~ in Ticks     False ~ in Rotations
+        """
         r = self.encoder.position
         if self.reverse:
             r *= -1
@@ -21,7 +22,7 @@ class Encoder():
 
     def setPos(self, pos=0):
         """
-            pos    float   number of rotations to set encoder to
+            pos         float   number of rotations to set encoder to
         """
         self.encoder.position = round(pos * self.ticksPerRev)
 
