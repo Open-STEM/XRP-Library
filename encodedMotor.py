@@ -8,6 +8,7 @@ class EncodedMotor():
     def __init__(self, Encoder, MotorPin1, MotorPin2, Name="Motor", flip=False):
         self.name = Name
         self.enc = Encoder
+        self.flip = flip
         MA = pwmio.PWMOut(MotorPin1, frequency=10000)
         MB = pwmio.PWMOut(MotorPin2, frequency=10000)
         self.motor = motor.DCMotor(MA, MB)
@@ -19,7 +20,7 @@ class EncodedMotor():
         print(self.name)
         print("Effort " + str(self.effort))
         print("Position " + str(self.enc.getPos()))
-        print("Flip " + str())
+        print("Flip " + str(self.flip))
         pass
 
     def setEffort(self, effort = 0):
