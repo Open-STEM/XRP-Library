@@ -5,23 +5,22 @@ import board
 import pwmio
 import rotaryio
 from adafruit_motor import motor
-import Encoder as enc
+import encoder as enc
 from simple_pid import PID
-import encodedMotor as em
+import encoded_motor as em
 import drive as drv
 import adafruit_hcsr04
 
 # Motor Left
 encL = enc.encoder(a=board.GP4, b=board.GP5, ticksPerRev=144)
-mL = em.EncodedMotor(encL, board.GP8, board.GP9, "Motor Left", True)
+mL = em.encoded_motor(encL, board.GP8, board.GP9, "Motor Left", True)
 
 # Motor Right
 encR = enc.encoder(a=board.GP2, b=board.GP3, ticksPerRev=144, doFlip = True)
-mR = em.EncodedMotor(encR, board.GP10, board.GP11, "Motor Right")
+mR = em.encoded_motor(encR, board.GP10, board.GP11, "Motor Right")
 
 # Drive Base
 driveBase = drv.drive(mL,mR)
-
 
 
 midEffort = 0.6
@@ -30,7 +29,7 @@ error = 0
 kp = 20/100000
 
 #Test Drive
-while True:
+while False:
     driveBase.setEffort(1,1)
     print()
     print(mL)
@@ -51,7 +50,7 @@ while False:
 lRfl = AnalogIn(board.A1) #GP27
 rRfl = AnalogIn(board.A0) #GP26
 
-while False:
+while True:
     rL = lRfl.value
     rR = rRfl.value
 
