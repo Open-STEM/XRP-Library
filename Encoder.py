@@ -3,9 +3,9 @@ import rotaryio
 
 class encoder():
 
-    def __init__(self, a, b, ticks, flip=False):
-        self.ticksPerRev = ticks
-        self.reverse = flip
+    def __init__(self, a, b, ticksPerRev, doFlip=False):
+        self.ticksPerRev = ticksPerRev
+        self.reverse = doFlip
         self.encoder = rotaryio.IncrementalEncoder(a, b)
         print("initialized")
 

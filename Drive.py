@@ -1,6 +1,7 @@
 # Write your code here :-)
 import math
 import time
+import encoded_motor
 
 class drive():
 
@@ -53,7 +54,7 @@ class drive():
     def arcTurn(self, degrees, speed, radius):
         pass
 
-    def setEffort(self, leftEffort = 0, rightEffort = 0, doNotFlip = False):
+    def setEffort(self, leftEffort = 0, rightEffort = 0, doNotFlip = True):
         if doNotFlip:
             self.mL.setEffort(leftEffort)
             self.mR.setEffort(rightEffort)
