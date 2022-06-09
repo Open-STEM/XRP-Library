@@ -5,7 +5,7 @@ import encoded_motor
 
 class drive():
 
-    def __init__(self, motorLeft, motorRight, wheelDiameter = 60, wheelSpacing = 166):
+    def __init__(self, motorLeft, motorRight, wheelDiameter = 65, wheelSpacing = 160):
         self.mL = motorLeft
         self.mR = motorRight
         self.wDiam = wheelDiameter
@@ -15,9 +15,8 @@ class drive():
         ## Straight
 
         rotationsToDo = distance / (self.wDiam * math.pi)
-        self.setEnc()
 
-        while (self.mL.getPos() + self.mR.getPos()) < abs(rotationsToDo * 2):
+        while abs(self.mL.getPos() + self.mR.getPos()) < abs(rotationsToDo * 2):
             leftDiff = abs(self.mL.getPos() - rotationsToDo)
             rightDiff = abs(self.mR.getPos() - rotationsToDo)
 
@@ -27,7 +26,7 @@ class drive():
                 self.setEffort(highEffort, lowEffort, distance >= 0)
 
         self.setEffort()
-        self.setEnc()
+        self.setPos()
 
     def turn(self, degrees, lowEffort = .4, highEffort = .8):
         rotationsToDo = (degrees/360) * (math.pi * self.wSpacing) / (self.wDiam * math.pi)
@@ -38,7 +37,6 @@ class drive():
 
         #print("Turning")
         #print("rotationsToDo " + str(rotationsToDo))
-        self.setEnc()
 
         while abs(self.mR.getPos() - self.mL.getPos()) < abs(rotationsToDo * 2):
             leftDiff  = abs(rotationsToDo) - abs(self.mL.getPos())
@@ -48,8 +46,9 @@ class drive():
                 self.setEffort(lowEffort, -highEffort, degrees <= 0)
             else:
                 self.setEffort(highEffort, -lowEffort, degrees <= 0)
-
-        self.setEnc()
+        
+        self.setEffort()
+        self.setPos()
 
     def arcTurn(self, degrees, speed, radius):
         pass
@@ -62,7 +61,7 @@ class drive():
             self.mL.setEffort(-leftEffort)
             self.mR.setEffort(-rightEffort)
 
-    def setEnc(self, left=0, right=0):
+    def setPos(self, left=0, right=0):
         self.mL.setPos(left)
         self.mR.setPos(right)
 
