@@ -22,33 +22,15 @@ mR = em.encoded_motor(encR, board.GP10, board.GP11, "Motor Right")
 # Drive Base
 driveBase = drv.drive(mL,mR)
 
+# Line Follower
+lRfl = AnalogIn(board.A1) #GP27
+rRfl = AnalogIn(board.A0) #GP26
 
+# Line Following Parameters
 midEffort = 0.6
 errorCap = 1 - midEffort
 error = 0
 kp = 20/100000
-
-#Test Drive
-while False:
-    driveBase.setEffort(1,1)
-    print()
-    print(mL)
-    print(mR)
-    time.sleep(2)
-
-# Ultrasonic Rangefinder
-sonar = adafruit_hcsr04.HCSR04(trigger_pin=board.GP28, echo_pin=board.GP7)
-while False:
-    try:
-        print((sonar.distance,))
-    except RuntimeError:
-        print("Retrying!")
-        pass
-    time.sleep(0.1)
-
-# Line Follower
-lRfl = AnalogIn(board.A1) #GP27
-rRfl = AnalogIn(board.A0) #GP26
 
 while True:
     rL = lRfl.value
