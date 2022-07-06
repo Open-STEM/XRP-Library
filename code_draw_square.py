@@ -16,30 +16,30 @@ encL = enc.encoder(a=board.GP4, b=board.GP5, ticksPerRev=144, doFlip=False)
 encR = enc.encoder(a=board.GP2, b=board.GP3, ticksPerRev=144, doFlip=True)
 
 # Motors
-mL = em.encoded_motor(encL, board.GP8, board.GP9, "Motor Left",     doFlip=True)
-mR = em.encoded_motor(encR, board.GP10, board.GP11, "Motor Right",  doFlip=False)
+mL = em.encoded_motor(encL, board.GP8, board.GP9, "Motor Left", doFlip=True)
+mR = em.encoded_motor(encR, board.GP10, board.GP11, "Motor Right", doFlip=False)
 
 # Drive Base
 driveBase = drv.drive(mL, mR)
 
 turns = 4
 straight = 4
-rotationsToTurn = .66
+rotationsToTurn = 0.66
 
 while turns > 0:
     print(turns)
     turns -= 1
 
-    ## Straight
-    while ((mL.getPos() + mR.getPos())/2) < straight:
+    # Straight
+    while ((mL.getPos() + mR.getPos()) / 2) < straight:
         if mL.getPos() > mR.getPos():
             driveBase.setEffort(0, 1)
         else:
             driveBase.setEffort(1, 0)
     driveBase.setPos()
 
-    ## Turn
-    while ((- mL.getPos() + mR.getPos())/2) < rotationsToTurn:
+    # Turn
+    while ((-mL.getPos() + mR.getPos()) / 2) < rotationsToTurn:
         if -mL.getPos() > mR.getPos():
             driveBase.setEffort(0, 1)
         else:

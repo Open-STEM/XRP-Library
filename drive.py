@@ -1,13 +1,21 @@
 # Write your code here :-)
 import math
 import time
-import encoded_motor
+import encoded_motor as em
+import encoder as enc
+import board 
 
 class drive():
 
-    def __init__(self, motorLeft, motorRight, wheelDiameter = 65, wheelSpacing = 160):
-        self.mL = motorLeft
-        self.mR = motorRight
+    def __init__(self, motorLeft = None, motorRight = None, wheelDiameter = 65, wheelSpacing = 160):
+        if motorLeft is None:
+            self.encL = enc.encoder(a=board.GP4, b=board.GP5, ticksPerRev=144, doFlip=False)
+            self.encR = enc.encoder(a=board.GP2, b=board.GP3, ticksPerRev=144, doFlip=True)
+            self.mL = em.encoded_motor(self.encL, board.GP8, board.GP9, "Motor Left", doFlip=True)
+            self.mR = em.encoded_motor(self.encR, board.GP10, board.GP11, "Motor Right", doFlip=False)
+        else:
+            self.mL = motorLeft
+            self.mR = motorRight
         self.wDiam = wheelDiameter
         self.wSpacing = wheelSpacing
 
@@ -46,7 +54,7 @@ class drive():
                 self.setEffort(lowEffort, -highEffort, degrees <= 0)
             else:
                 self.setEffort(highEffort, -lowEffort, degrees <= 0)
-        
+
         self.setEffort()
         self.setPos()
 
