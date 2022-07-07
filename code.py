@@ -4,9 +4,22 @@ import board
 import pwmio
 from adafruit_motor import servo
 import GroveUltrasonicRanger
+from WPILib import *
+from analogio import AnalogIn
 
 sonar = GroveUltrasonicRanger.GroveUltrasonicRanger(sig_pin=board.GP28)
 pwm = pwmio.PWMOut(board.GP12, duty_cycle=2 ** 15, frequency=50)
+
+# Line Follower
+lRfl = AnalogIn(board.A1) #GP27
+rRfl = AnalogIn(board.A0) #GP26
+
+# Drive Base
+driveBase = drv.drive()
+
+for side in range(4):
+    driveBase.straight(100)
+    driveBase.turn(90)
 
 my_servo = servo.Servo(pwm)
 
@@ -32,4 +45,7 @@ while True:
     except RuntimeError as e:
         print("Retrying due to exception =", e)
         pass
-    time.sleep(0.1)
+
+    print("left: ", lRfl.value, "right: ", rRfl.value)
+
+    time.sleep(0.3)
