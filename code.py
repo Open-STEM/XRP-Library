@@ -1,7 +1,5 @@
 from WPILib import *
 
-sonar = GroveUltrasonicRanger.GroveUltrasonicRanger(board.GP28)
-
 #square function
 def square(sidelength):
     for sides in range(4):
@@ -34,5 +32,16 @@ def driveTillClose():
 
 # Example of turning using encoders
 
+def lineTrack():
+    baseEffort = 0.6
+    Kp = 0.02
+    while True:
+        error = refl.right() - refl.left()
+        driveBase.setEffort(0.6 + error * Kp, 0.6 - error * Kp)
+
 driveBase = drv.drive()
-standoff()
+lineTrack()
+
+while True:
+    print("Left:", refl.left(), "right:", refl.right())
+    time.sleep(0.25)
