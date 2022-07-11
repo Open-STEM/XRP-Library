@@ -9,6 +9,8 @@ from adafruit_motor import servo
 
 sonar = GroveUltrasonicRanger.GroveUltrasonicRanger(board.GP28)
 
+driveBase = drv.drive()
+
 class Reflect:
     def __init__(self):
         self.refl = GroveUltrasonicRanger.GroveUltrasonicRanger(board.GP27)
