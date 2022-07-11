@@ -27,13 +27,13 @@ class encoded_motor():
         pass
 
     def setEffort(self, effort = 0):
+        if effort > 1.0:
+            effort = 1.0
+        elif effort < -1.0:
+            effort = -1.0
         self.effort = effort
         if effort is None:
             pass
-        elif effort < -1.0:
-            print(self.name + " effort " + str(effort) + " is too low.")
-        elif 1.0 < effort:
-            print(self.name + " effort " + str(effort) + " is too big.")
         else:
             self.motor.throttle = effort
 

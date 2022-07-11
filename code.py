@@ -1,51 +1,34 @@
-# Write your code here :-)
-import time
-import board
-import pwmio
-from adafruit_motor import servo
-import GroveUltrasonicRanger
 from WPILib import *
-from analogio import AnalogIn
 
 sonar = GroveUltrasonicRanger.GroveUltrasonicRanger(sig_pin=board.GP28)
-pwm = pwmio.PWMOut(board.GP12, duty_cycle=2 ** 15, frequency=50)
 
-# Line Follower
-lRfl = AnalogIn(board.A1) #GP27
-rRfl = AnalogIn(board.A0) #GP26
+#square function
+def square(sidelength):
+    for sides in range(4):
+        driveBase.straight(sidelength)
+        driveBase.turn(90)
 
-# Drive Base
+#polygon function
+def polygon(sides):
+    for s in range(sides):
+        driveBase.straight(150)
+        driveBase.turn(360/sides)
+
+def standoff():
+    Kp = 0.2
+    while True:
+        distance = sonar.distance
+        error = distance - 10.0
+        driveBase.setEfforts(error * Kp)
+        time.sleep(0.01)
+
+def driveTillClose():
+    while True:
+        if sonar.distance > 10:
+            driveBase.setEffort(0.60, 0.60)
+        else:
+            driveBase.setEffort(0, 0)
+        time.sleep(0.01)
+
 driveBase = drv.drive()
-
-for side in range(4):
-    driveBase.straight(100)
-    driveBase.turn(90)
-
-my_servo = servo.Servo(pwm)
-
-INCREMENT = 2
-DECREMENT = -2
-
-servo_dir = INCREMENT
-servo_pos = 90
-prev_time = 0
-
-my_servo.angle = servo_pos
-
-while True:
-    servo_pos = servo_pos + servo_dir
-    if servo_pos == 0:
-        servo_dir = INCREMENT
-    elif servo_pos == 180:
-        servo_dir = DECREMENT
-    my_servo.angle = servo_pos
-
-    try:
-        print((sonar.distance,))
-    except RuntimeError as e:
-        print("Retrying due to exception =", e)
-        pass
-
-    print("left: ", lRfl.value, "right: ", rRfl.value)
-
-    time.sleep(0.3)
+standoff()

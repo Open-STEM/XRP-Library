@@ -69,6 +69,9 @@ class drive():
             self.mL.setEffort(-leftEffort)
             self.mR.setEffort(-rightEffort)
 
+    def setEfforts(self, effort = 0, doNotFlip = True):
+        self.setEffort(effort, effort, doNotFlip)
+
     def setPos(self, left=0, right=0):
         self.mL.setPos(left)
         self.mR.setPos(right)
