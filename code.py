@@ -1,6 +1,6 @@
 from WPILib import *
 
-sonar = GroveUltrasonicRanger.GroveUltrasonicRanger(sig_pin=board.GP28)
+sonar = GroveUltrasonicRanger.GroveUltrasonicRanger(board.GP28)
 
 #square function
 def square(sidelength):
@@ -29,6 +29,10 @@ def driveTillClose():
         else:
             driveBase.setEffort(0, 0)
         time.sleep(0.01)
+
+# Example using encoders of driving for a distance
+
+# Example of turning using encoders
 
 driveBase = drv.drive()
 standoff()
