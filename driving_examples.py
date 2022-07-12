@@ -1,5 +1,19 @@
 from WPILib import *
 
+#drive straight
+def driveStraight():
+    driveBase.straight(200)
+
+#simeple turn
+def simpleTurn():
+    driveBase.setEffort(0.5, 0.8)
+
+def pointTurn():
+    driveBase.setEffort(-0.8, 0.8)
+
+def swingTurn():
+    driveBase.setEffort(0, 0.8)
+
 #square function
 def square(sidelength):
     for sides in range(4):
@@ -28,6 +42,11 @@ def driveTillClose():
             driveBase.setEffort(0, 0)
         time.sleep(0.01)
 
+# Driving in a circle
+def circle():
+    while True:
+        driveBase.setEffort(0.6, 0.75)
+
 # Example using encoders of driving for a distance
 
 # Example of turning using encoders
@@ -39,9 +58,25 @@ def lineTrack():
         error = refl.right() - refl.left()
         driveBase.setEffort(0.6 + error * Kp, 0.6 - error * Kp)
 
-driveBase = drv.drive()
-lineTrack()
+# see what 3/4 speed looks like
+def speedTest():
+    driveBase.setEffort(0.75, 0.75)
 
-while True:
-    print("Left:", refl.left(), "right:", refl.right())
-    time.sleep(0.25)
+# drive 11" using timing
+def drive11inches():
+    print("Drive 11 inches")
+    secondsPerInch = 0.2775
+    driveBase.setEffort(0.75, 0.75)
+    time.sleep(secondsPerInch * 11)
+    driveBase.setEffort(0, 0)
+
+def driveInchesTimed(inches):
+    secondsPerInch = 0.2775
+    driveBase.setEffort(0.75, 0.75)
+    time.sleep(secondsPerInch * inches)
+    driveBase.setEffort(0, 0)
+
+time.sleep(6)
+drive11inches()
+time.sleep(10)
+driveBase.setEffort(0, 0)
