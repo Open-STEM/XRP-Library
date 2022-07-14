@@ -43,6 +43,13 @@ def circle():
     while True:
         driveBase.setEffort(0.6, 0.75)
 
+# Drive to a line and stop
+def driveToLineAndStop():
+    driveBase.setEffort(0.6, 0.6)
+    while refl.left() < 5 and refl.right() < 5:
+        time.sleep(0.01)
+    driveBase.setEffort(0, 0)
+
 # Two sensor digital line tracking
 def twoSensorLineTrack():
     while True:
