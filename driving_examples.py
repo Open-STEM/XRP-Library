@@ -1,9 +1,5 @@
 from WPILib import *
 
-#drive straight
-def driveStraight():
-    driveBase.straight(200)
-
 #simeple turn
 def simpleTurn():
     driveBase.setEffort(0.5, 0.8)
