@@ -47,9 +47,33 @@ def circle():
     while True:
         driveBase.setEffort(0.6, 0.75)
 
-# Example using encoders of driving for a distance
+# Two sensor digital line tracking
+def twoSensorLineTrack():
+    while True:
+        high = 0.75
+        low = 0.4
+        r = refl.right()
+        l = refl.left()
+        print ("Left:", l, "Right:", r)
+        if (r > 5):
+            driveBase.setEffort(high, low)
+        elif (l > 5):
+            driveBase.setEffort(low, high)
+        else:
+            driveBase.setEffort(high, high)
+        time.sleep(0.01)
 
-# Example of turning using encoders
+# Single sensor line tracking
+def oneSensorLineTrack():
+    while True:
+        high = 0.75
+        low = 0.4
+        r = refl.right()
+        if (r > 5):
+            driveBase.setEffort(high, low)
+        else:
+            driveBase.setEffort(low, high)
+        time.sleep(0.01)d
 
 def lineTrack():
     baseEffort = 0.6
@@ -75,6 +99,16 @@ def driveInchesTimed(inches):
     driveBase.setEffort(0.75, 0.75)
     time.sleep(secondsPerInch * inches)
     driveBase.setEffort(0, 0)
+
+def triangle():
+    for sides in range(3):
+        straight(200)
+        turn(120)
+
+def triangles():
+    for step in range(12):
+        triangle()
+        turn(20)
 
 time.sleep(6)
 drive11inches()
