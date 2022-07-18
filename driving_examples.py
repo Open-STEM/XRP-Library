@@ -1,6 +1,5 @@
 from WPILib import *
 
-#simeple turn
 def simpleTurn():
     driveBase.setEffort(0.5, 0.8)
 
