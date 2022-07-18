@@ -43,6 +43,12 @@ def circle():
     while True:
         driveBase.setEffort(0.6, 0.75)
 
+# Characterize line sensors
+def checkLineSensors():
+    while True:
+        print("Left:", refl.left(), "Right:", refl.right())
+        time.sleep(0.5)
+
 # Drive to a line and stop
 def driveToLineAndStop():
     driveBase.setEffort(0.6, 0.6)
@@ -76,7 +82,7 @@ def oneSensorLineTrack():
             driveBase.setEffort(high, low)
         else:
             driveBase.setEffort(low, high)
-        time.sleep(0.01)d
+        time.sleep(0.01)
 
 def lineTrack():
     baseEffort = 0.6
@@ -113,7 +119,27 @@ def triangles():
         triangle()
         turn(20)
 
-time.sleep(6)
-drive11inches()
-time.sleep(10)
-driveBase.setEffort(0, 0)
+def servo_test():
+
+    pwm = pwmio.PWMOut(board.GP12, duty_cycle=2 ** 15, frequency=50)
+    # Create a servo object, my_servo.
+    my_servo = servo.Servo(pwm)
+
+    while True:
+        my_servo.angle = 0
+        time.sleep(3)
+        my_servo.angle = 70
+        time.sleep(3)
+
+    while True:
+        print("going from 0 to 180")
+        for angle in range(0, 180, 5):  # 0 - 180 degrees, 5 degrees at a time.
+            my_servo.angle = angle
+            time.sleep(0.05)
+        print("going from 180 to 0")
+        for angle in range(180, 0, -5): # 180 - 0 degrees, 5 degrees at a time.
+            my_servo.angle = angle
+            time.sleep(0.05)
+
+servo_test()
+
