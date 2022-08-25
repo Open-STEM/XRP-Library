@@ -1,12 +1,12 @@
 # Write your code here :-)
 import rotaryio
 
-class encoder():
+class Encoder():
 
-    def __init__(self, a, b, ticksPerRev, doFlip=False):
+    def __init__(self, pinA, pinB, ticksPerRev, doFlip=False):
         self.ticksPerRev = ticksPerRev
         self.reverse = doFlip
-        self.encoder = rotaryio.IncrementalEncoder(a, b)
+        self.encoder = rotaryio.IncrementalEncoder(pinA, pinB)
         print("initialized")
 
     def getPos(self, inTicks=False, roundToo=3):

@@ -1,26 +1,18 @@
 # Write your code here :-)
 import math
 import time
-import encoded_motor as em
-import encoder as enc
-import board
 
-class drive():
+class Drivetrain():
 
-    def __init__(self, motorLeft = None, motorRight = None, wheelDiameter = 65, wheelSpacing = 160):
-        if motorLeft is None:
-            self.encL = enc.encoder(a=board.GP4, b=board.GP5, ticksPerRev=144, doFlip=True)
-            self.encR = enc.encoder(a=board.GP2, b=board.GP3, ticksPerRev=144, doFlip=False)
-            self.mL = em.encoded_motor(self.encL, board.GP8, board.GP9, "Motor Left", doFlip=True)
-            self.mR = em.encoded_motor(self.encR, board.GP10, board.GP11, "Motor Right", doFlip=False)
-        else:
-            self.mL = motorLeft
-            self.mR = motorRight
+    def __init__(self, leftEncodedMotor, rightEncodedMotor, wheelDiameter, wheelSpacing):
+
+        self.leftMotor = leftEncodedMotor
+        self.rightMotor = rightEncodedMotor
+        
         self.wDiam = wheelDiameter
         self.wSpacing = wheelSpacing
 
     def straight(self, distance, lowEffort = .4, highEffort = .8):
-        ## Straight
 
         rotationsToDo = distance / (self.wDiam * math.pi)
 

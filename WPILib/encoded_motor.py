@@ -5,13 +5,15 @@ import time
 import encoder
 from simple_pid import PID
 
-class encoded_motor():
-    def __init__(self, Encoder, MotorPin1, MotorPin2, Name="Motor Unnamed", doFlip=False):
+class EncodedMotor():
+    def __init__(self, encoderPinA, encoderPinB , motorPin1, motorPin2, Name="Motor Unnamed", doFlip=False):
+        
         self.name = Name
-        self.enc = Encoder
+        self.encoder = encoder.Encoder(pinA=encoderPinA, pinB=encoderPinB, ticksPerRev=144, doFlip=doFlip)
         self.flip = doFlip
-        MA = pwmio.PWMOut(MotorPin1, frequency=10000)
-        MB = pwmio.PWMOut(MotorPin2, frequency=10000)
+        
+        MA = pwmio.PWMOut(motorPin1, frequency=10000)
+        MB = pwmio.PWMOut(motorPin2, frequency=10000)
         if doFlip:
             self.motor = motor.DCMotor(MB, MA)
         else:
