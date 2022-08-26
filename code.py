@@ -56,7 +56,7 @@ def lineTrack():
     Kp = 0.02
     while True:
         error = refl.right() - refl.left()
-        driveBase.setEffort(0.6 + error * Kp, 0.6 - error * Kp)
+        driveBase.setEffort(0.6 + error * Kp, 0.6 -  error * Kp)
 
 time.sleep(6)
 swingTurn()

@@ -29,15 +29,9 @@ class Drivetrain():
         distanceMm = 10 * distanceCm
         rotationsToDo = distanceMm  / (self.wDiam * math.pi)
 
+        while abs(self.leftMotor.getPos() + self.rightMotor.getPos()) < rotationsToDo:
 
-        
-
-
-        while abs(self.mL.getPos() + self.mR.getPos()) < rotationsToDo:
-
-
-
-            error = KP * (self.mL.getPos() - self.mR.getPos()) # positive if bearing right
+            error = KP * (self.leftMotor.getPos() - self.rightMotor.getPos()) # positive if bearing right
 
             self.setEffort(speed - error, speed + error)
 
@@ -52,12 +46,12 @@ class Drivetrain():
         rotationsToDo = (degrees/360) * (math.pi * self.wSpacing) / (self.wDiam * math.pi)
 
     # Set the raw effort of both motors. If only one effort is specified, both motors will be set at that effort.
-    def setEffort(self, effort, effortRight = None):
-        effortLeft = effort
-        effortRight = effort if effortRight is None else effortRight
+    def setEffort(self, effort, rightEffort = None):
+        leftEffort = effort
+        rightEffort = effort if rightEffort is None else rightEffort
 
-        self.leftMotor.setEffort(effortLeft)
-        self.rightMotor.setEffort(effortRight)
+        self.leftMotor.setEffort(leftEffort)
+        self.rightMotor.setEffort(rightEffort)
 
     # Stop both motors.
     def stop(self):
@@ -65,9 +59,9 @@ class Drivetrain():
 
     # Set the speed of both motors. The encoded motors will attempt to maintain their speeds with proportional control.
     # If only one speed is specified, both motors will be set at that speed.
-    def setSpeed(self, speed, speedRight = None):
-        speedLeft = speed
-        speedRight = speed if speedRight is None else speedRight
+    def setSpeed(self, speed, rightSpeed = None):
+        leftSpeed = speed
+        rightSpeed = speed if rightSpeed is None else rightSpeed
 
     # Set the position of the motors' encoders in degrees. Note that this does not actually move the motor but just recalibrates the stored encoder value.
     # If only one encoder position is specified, the encoders for each motor will be set to that position.
@@ -76,12 +70,11 @@ class Drivetrain():
         degLeft = degrees
         degRight = degrees if degreesRight is None else degreesRight
 
-        self.motorLeft.setPos(degLeft)
-        self.motorRight.setPos(degRight)
+        self.leftMotor.setPos(degLeft)
+        self.rightMotor.setPos(degRight)
 
     # Return the current position of left and right motors' encoders in degrees as a tuple.
     def getEncoderPosition(self):
-        pass
-        return 0,0
+        return leftMotor.getPos(),rightMotor.getPos()
 
 
