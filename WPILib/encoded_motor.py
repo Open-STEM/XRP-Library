@@ -28,16 +28,13 @@ class EncodedMotor():
         print("Flipped  " + str(self.flip))
         pass
 
-    def setEffort(self, effort = 0):
-        if effort > 1.0:
-            effort = 1.0
-        elif effort < -1.0:
-            effort = -1.0
-        self.effort = effort
+    # set motor throttle (effort) betwen [-1, 1]
+    def setEffort(self, effort):
         if effort is None:
-            pass
+            self.motor.throttle = None
         else:
-            self.motor.throttle = effort
+            self.motor.throttle = min(1, max(-1, effort)) # bound effort between [-1, 1]
+
 
     def getPos(self):
         return self.enc.getPos()

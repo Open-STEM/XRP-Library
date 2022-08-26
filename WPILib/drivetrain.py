@@ -1,10 +1,11 @@
-# Write your code here :-)
 import math
 import time
 
+# Encapsulates the left and right motor objects and provides high-level functionality to manipulate robot locomotion.
+
 class Drivetrain():
 
-    def __init__(self, leftEncodedMotor, rightEncodedMotor, wheelDiameter, wheelSpacing):
+    def __init__(self, leftEncodedMotor, rightEncodedMotor, wheelDiameter, wheelSpacing): # wheelDiameter and wheelSpacing in mm
 
         self.leftMotor = leftEncodedMotor
         self.rightMotor = rightEncodedMotor
@@ -12,62 +13,75 @@ class Drivetrain():
         self.wDiam = wheelDiameter
         self.wSpacing = wheelSpacing
 
-    def straight(self, distance, lowEffort = .4, highEffort = .8):
+        self.setEncoderPosition(0)
 
-        rotationsToDo = distance / (self.wDiam * math.pi)
+    # Go forward the specified distance in centimeters, and exit function when distance has been reached.
+    # Speed is bounded from -1 (reverse at full speed) to 1 (forward at full speed)
+    def goForward(self, distanceCm, speed = 0.5):
 
-        while abs(self.mL.getPos() + self.mR.getPos()) < abs(rotationsToDo * 2):
-            leftDiff = abs(self.mL.getPos() - rotationsToDo)
-            rightDiff = abs(self.mR.getPos() - rotationsToDo)
+        # ensure distance is always positive while speed could be either positive or negative
+        if distanceCm < 0:
+            speed *= -1
+            distanceCm *= -1
 
-            if leftDiff < rightDiff:
-                self.setEffort(lowEffort, highEffort, distance >= 0)
-            else:
-                self.setEffort(highEffort, lowEffort, distance >= 0)
+        KP = 1
 
-        self.setEffort()
-        self.setPos()
+        distanceMm = 10 * distanceCm
+        rotationsToDo = distanceMm  / (self.wDiam * math.pi)
 
-    def turn(self, degrees, lowEffort = .4, highEffort = .8):
+
+        
+
+
+        while abs(self.mL.getPos() + self.mR.getPos()) < rotationsToDo:
+
+
+
+            error = KP * (self.mL.getPos() - self.mR.getPos()) # positive if bearing right
+
+            self.setEffort(speed - error, speed + error)
+
+
+
+        self.stop()
+
+    # Turn the robot some relative heading given in turnDegrees, and exit function when the robot has reached that heading.
+    # Speed is bounded from -1 (turn counterclockwise the relative heading at full speed) to 1 (turn clockwise the relative heading at full speed)
+    def goTurn(self, turnDegrees, speed = 0.5):
+
         rotationsToDo = (degrees/360) * (math.pi * self.wSpacing) / (self.wDiam * math.pi)
 
-        ## Turning Direction
-        ##      Negative Left
-        ##      Positive Right
+    # Set the raw effort of both motors. If only one effort is specified, both motors will be set at that effort.
+    def setEffort(self, effort, effortRight = None):
+        effortLeft = effort
+        effortRight = effort if effortRight is None else effortRight
 
-        #print("Turning")
-        #print("rotationsToDo " + str(rotationsToDo))
+        self.leftMotor.setEffort(effortLeft)
+        self.rightMotor.setEffort(effortRight)
 
-        while abs(self.mR.getPos() - self.mL.getPos()) < abs(rotationsToDo * 2):
-            leftDiff  = abs(rotationsToDo) - abs(self.mL.getPos())
-            rightDiff = abs(rotationsToDo) - abs(self.mR.getPos())
+    # Stop both motors.
+    def stop(self):
+        self.setEffort(0)
 
-            if leftDiff < rightDiff:
-                self.setEffort(lowEffort, -highEffort, degrees <= 0)
-            else:
-                self.setEffort(highEffort, -lowEffort, degrees <= 0)
+    # Set the speed of both motors. The encoded motors will attempt to maintain their speeds with proportional control.
+    # If only one speed is specified, both motors will be set at that speed.
+    def setSpeed(self, speed, speedRight = None):
+        speedLeft = speed
+        speedRight = speed if speedRight is None else speedRight
 
-        self.setEffort()
-        self.setPos()
+    # Set the position of the motors' encoders in degrees. Note that this does not actually move the motor but just recalibrates the stored encoder value.
+    # If only one encoder position is specified, the encoders for each motor will be set to that position.
+    def setEncoderPosition(self, degrees, degreesRight = None)
 
-    def arcTurn(self, degrees, speed, radius):
+        degLeft = degrees
+        degRight = degrees if degreesRight is None else degreesRight
+
+        self.motorLeft.setPos(degLeft)
+        self.motorRight.setPos(degRight)
+
+    # Return the current position of left and right motors' encoders in degrees as a tuple.
+    def getEncoderPosition(self):
         pass
-
-    def setEffort(self, leftEffort = 0, rightEffort = 0, doNotFlip = True):
-        if doNotFlip:
-            self.mL.setEffort(leftEffort)
-            self.mR.setEffort(rightEffort)
-        else:
-            self.mL.setEffort(-leftEffort)
-            self.mR.setEffort(-rightEffort)
-
-    def setEfforts(self, effort = 0, doNotFlip = True):
-        self.setEffort(effort, effort, doNotFlip)
-
-    def setPos(self, left=0, right=0):
-        self.mL.setPos(left)
-        self.mR.setPos(right)
-
-
+        return 0,0
 
 

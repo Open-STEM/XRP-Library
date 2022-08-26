@@ -1,9 +1,9 @@
-from grove_ultrasonic import GroveUltrasonicRanger as Ultrasonic
+import grove_ultrasonic
 
 class Reflectance:
     def __init__(self, leftPin, rightPin):
-        self._leftReflectance = Ultrasonic(leftPin)
-        self._rightReflectance = Ultrasonic(rightPin)
+        self._leftReflectance = grove_ultrasonic.GroveUltrasonicRanger(leftPin)
+        self._rightReflectance = grove_ultrasonic.GroveUltrasonicRanger(rightPin)
     
     def getLeftReflectance(self):
         return self._leftReflectance.distance
