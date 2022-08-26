@@ -4,6 +4,7 @@ import encoded_motor as _encoded_motor
 import drivetrain as _drivetrain
 import grove_ultrasonic as _grove_ultrasonic
 import reflectance as _reflectance
+import servo as _servo
 
 # hidden motor variables
 _leftMotor = _encoded_motor.EncodedMotor(encoderPinA=_board.GP4, encoderPinB=_board.GP5,
@@ -18,7 +19,7 @@ reflectance = _reflectance.Reflectance(_board.GP27, _board.GP26)
 sonar = _grove_ultrasonic.GroveUltrasonicRanger(_board.GP28)
 led = None
 buttons = None
-#servo
+servo = _servo.Servo(_board.GP12, actuationRange = 135)
 
 
 #sphinx docs comments
