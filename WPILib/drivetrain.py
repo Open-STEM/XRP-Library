@@ -43,7 +43,7 @@ class Drivetrain():
 
         while abs(self.leftMotor.getPos() + self.rightMotor.getPos() < rotationsToDo and time.time() < startTime+timeout):
 
-            error = KP * (self.leftMotor.getPos() - self.rightMotor.getPos()) # positive if bearing right
+            error = KP * (self.mL.getPos() - self.mR.getPos()) # positive if bearing right
 
             self.setEffort(speed - error, speed + error)
 
@@ -128,8 +128,8 @@ class Drivetrain():
         degLeft = leftDegrees
         degRight = rightDegrees
 
-        self.leftMotor.setPos(degLeft)
-        self.rightMotor.setPos(degRight)
+        self.motorLeft.setPos(degLeft)
+        self.motorRight.setPos(degRight)
 
     def getEncoderPosition(self):
         """
