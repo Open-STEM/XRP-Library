@@ -9,20 +9,31 @@ class Encoder():
         self.encoder = rotaryio.IncrementalEncoder(pinA, pinB)
         print("initialized")
 
-    def getPos(self, inTicks=False, roundToo=3):
+    def getPos(self, inTicks: bool = False, roundTo: int = 3) -> float:
         """
-            inTicks     boolean     True ~ in Ticks     False ~ in Rotations
+        Retrieves the position of the encoder
+
+        :param inTicks: If true, returns in encoder ticks; If false, returns in rotations
+        :type inTicks: bool
+        :param roundTo: The number of decimal places to round the encoder position to
+        :type roundTo: int
+
+        :return: The position of the encoder
+        :rtype: float
         """
         r = self.encoder.position
         if self.reverse:
             r *= -1
         if not inTicks:
             r = r / self.ticksPerRev
-        return round(r, roundToo)
+        return round(r, roundTo)
 
-    def setPos(self, pos=0):
+    def setPos(self, pos: float = 0):
         """
-            pos         float   number of rotations to set encoder to
+        Recalibrates the encoder to the specified position
+        :param pos: The number of rotations to set encoder to
+        :type pos: float
+        :return: void
         """
         self.encoder.position = round(pos * self.ticksPerRev)
 

@@ -129,7 +129,8 @@ class GroveUltrasonicRanger:
 		
 	@property
 	def distance(self):
-		"""Return the distance measured by the sensor in cm (or user specified units.)
+		"""
+		Return the distance measured by the sensor in cm (or user specified units.)
 
 		This is the function that will be called most often in user code. The
 		distance is calculated by timing a pulse from the sensor, indicating

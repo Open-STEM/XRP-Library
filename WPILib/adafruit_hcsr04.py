@@ -108,7 +108,8 @@ class HCSR04:
 
     @property
     def distance(self):
-        """Return the distance measured by the sensor in cm.
+        """
+        Return the distance measured by the sensor in cm.
 
         This is the function that will be called most often in user code. The
         distance is calculated by timing a pulse from the sensor, indicating

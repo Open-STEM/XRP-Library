@@ -29,7 +29,7 @@ class EncodedMotor():
         pass
 
     # set motor throttle (effort) betwen [-1, 1]
-    def setEffort(self, effort):
+    def setEffort(self, effort:float):
         if effort is None:
             self.motor.throttle = None
         else:
