@@ -20,18 +20,18 @@ print("Button input found; Program starting")
 robot.drivetrain.setBrakeType(robot.COAST_MODE)
 
 # Drive forward 6 cm
-robot.drivetrain.goStraight(25, 1)
+robot.drivetrain.goStraight(25.4, 1)
 
 time.sleep(1)
 
 # turn 90 degrees
-robot.drivetrain.goTurn(90)
+robot.drivetrain.goTurn(90,1)
 
 time.sleep(2)
 
-robot.drivetrain.goTurn(90, -.5)
+robot.drivetrain.goTurn(90, -.1)
 
 time.sleep(1)
 
-robot.drivetrain.goStraight(-6)
+robot.drivetrain.goStraight(-25.4,1)
 
