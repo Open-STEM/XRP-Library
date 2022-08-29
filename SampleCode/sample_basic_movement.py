@@ -8,11 +8,12 @@ import WPILib.WPILib as robot
     have both motors spinning forward and the encoders counting up.
 """
 
-# Wait until user command before running
-while not robot.buttons.isGP20Pressed():
-    time.sleep(.01)
-    print("Waiting for button signal")
 
+print("Waiting for button signal")
+
+# Wait until user command before running
+while not robot.buttons.isGP21Pressed():
+    time.sleep(.01)
 
 print("Button input found; Program starting")
 
@@ -25,11 +26,11 @@ robot.drivetrain.goStraight(25.4, 1)
 time.sleep(1)
 
 # turn 90 degrees
-robot.drivetrain.goTurn(90,1)
+robot.drivetrain.goTurn(90,0.5)
 
-time.sleep(2)
+time.sleep(1)
 
-robot.drivetrain.goTurn(90, -.1)
+robot.drivetrain.goTurn(90, -0.5)
 
 time.sleep(1)
 

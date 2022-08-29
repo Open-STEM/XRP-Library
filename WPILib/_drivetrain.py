@@ -50,7 +50,7 @@ class Drivetrain:
         startingLeft = self.leftMotor.getPos()
         startingRight = self.rightMotor.getPos()
 
-        KP = 1
+        KP = 5
 
         rotationsToDo = distance  / (self.wheelDiameter * math.pi)
 
@@ -102,7 +102,7 @@ class Drivetrain:
         startingLeft = self.leftMotor.getPos()
         startingRight = self.rightMotor.getPos()
 
-        KP = 1
+        KP = 5
 
         while True:
 
@@ -115,7 +115,7 @@ class Drivetrain:
             error = KP * (leftDelta + rightDelta)
             print("Error:", error, leftDelta, rightDelta, speed)
             
-            self.setEffort(speed - error, -speed + error)
+            self.setEffort(speed - error, -speed - error)
 
             time.sleep(0.01)
 
