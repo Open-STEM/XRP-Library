@@ -28,7 +28,7 @@ class EncodedMotor:
         pass
 
     # set motor throttle (effort) betwen [-1, 1]
-    def setEffort(self, effort: float)->None:
+    def setEffort(self, effort: float) -> None:
         if effort is None:
             self.motor.throttle = None
         else:
@@ -39,7 +39,7 @@ class EncodedMotor:
         if brakeType:
             self.motor.decay_mode = motor.SLOW_DECAY # brake
         else:
-            self.motor.decay_motor = motor.FAST_DECAY
+            self.motor.decay_mode = motor.FAST_DECAY
 
 
     def getPos(self) -> float:
