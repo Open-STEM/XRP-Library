@@ -58,14 +58,3 @@ def driveTillClose(targetDistance: float = 10.0):
 def circle():
     while True:
         drivetrain.setEffort(0.6, 0.75)
-
-# Example using encoders of driving for a distance
-
-# Example of turning using encoders
-
-def lineTrack():
-    baseEffort = 0.6
-    KP = 0.02
-    while True:
-        error = reflectance.getLeftReflectance() - reflectance.getRightReflectance()
-        drivetrain.setEffort(baseEffort + error * KP, baseEffort -  error * KP)
