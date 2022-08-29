@@ -8,8 +8,8 @@ from . import _encoded_motor
 
 import time
 
-BRAKE_MODE = True;
-COAST_MODE = False;
+BRAKE_MODE = True
+COAST_MODE = False
 
 # hidden motor variables
 _leftMotor = _drivetrain._encoded_motor.EncodedMotor(encoderPinA=_board.GP4, encoderPinB=_board.GP5,
