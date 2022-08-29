@@ -2,7 +2,7 @@ from WPILib.WPILib import *
 
 # Polling data from the ultrasonic sensor
 def ultrasonicTest():
-    while False:
+    while True:
         try:
             print((sonar.getDistance()))
         except RuntimeError:
