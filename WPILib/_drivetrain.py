@@ -143,7 +143,7 @@ class Drivetrain:
         """
         Stops both drivetrain motors
         """
-        self.setEffort(0,0)
+        self.set_effort(0,0)
 
     def set_encoder_position(self, leftDegrees: float, rightDegrees: float) -> None:
         """
