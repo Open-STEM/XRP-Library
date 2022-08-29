@@ -1,5 +1,5 @@
 import time
-import WPILib.WPILib as robot
+from WPILib.WPILib import *
 
 """
     File meant to help students test basic drive functionality.
@@ -8,31 +8,23 @@ import WPILib.WPILib as robot
     have the robot driving straight and turning after waiting for a button press.
 """
 
+def testDrive():
+    # Drive forward cm
+    drivetrain.goStraight(25, 0.5)
 
-print("Waiting for button signal from GP20")
+    time.sleep(1)
 
-# Wait until user command before running
-while not robot.buttons.isGP20Pressed():
-    time.sleep(.01)
+    # turn 90 degrees clockwise
+    drivetrain.goTurn(90,0.5)
 
-print("Button input found; Program starting")
+    time.sleep(1)
 
-# Drive forward cm
-robot.drivetrain.goStraight(25, 0.5)
+    # turn 90 degrees counter clockwise by setting speed negative
+    drivetrain.goTurn(90, -0.5)
 
-time.sleep(1)
+    time.sleep(1)
 
-# turn 90 degrees clockwise
-robot.drivetrain.goTurn(90,0.5)
-
-time.sleep(1)
-
-# turn 90 degrees counter clockwise by setting speed negative
-robot.drivetrain.goTurn(90, -0.5)
-
-time.sleep(1)
-
-# drive backwards 25 cm by setting distance negative. s
-# There is no difference between setting speed or distance negative, both work
-robot.drivetrain.goStraight(-25,0.5)
+    # drive backwards 25 cm by setting distance negative. s
+    # There is no difference between setting speed or distance negative, both work
+    drivetrain.goStraight(-25,0.5)
 

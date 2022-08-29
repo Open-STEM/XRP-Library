@@ -6,7 +6,7 @@ class Reflectance:
         self._rightReflectance = _grove_ultrasonic.GroveUltrasonicRanger(rightPin)
     
     def getLeftReflectance(self):
-        return self._leftReflectance.distance
+        return self._leftReflectance.getDistance()
     
     def getRightReflectance(self):
-        return self._rightReflectance.distance
+        return self._rightReflectance.getDistance()
