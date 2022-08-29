@@ -56,7 +56,10 @@ class Drivetrain:
 
         self.stop()
 
-        return time.time() < startTime+timeout
+        if timeout is None:
+            return True
+        else:
+            return time.time() < startTime+timeout
 
     def goTurn(self, turnDegrees: float, speed: float = 0.5, timeout: float = None) -> bool:
         """
@@ -96,7 +99,10 @@ class Drivetrain:
 
         self.stop()
 
-        return time.time() < startTime+timeout
+        if timeout is None:
+            return True
+        else:
+            return time.time() < startTime+timeout
 
     def setEffort(self, leftEffort: float, rightEffort: float) -> None:
         """
