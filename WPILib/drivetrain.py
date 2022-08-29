@@ -37,11 +37,14 @@ class Drivetrain():
             distance *= -1
 
         startTime = time.time()
+        startingLeft = self.leftMotor.getPos()
+        startingRight = self.rightMotor.getPos()
+
         KP = 1
 
         rotationsToDo = distance  / (self.wheelDiameter * math.pi)
 
-        while abs(self.leftMotor.getPos() + self.rightMotor.getPos() < rotationsToDo and time.time() < startTime+timeout):
+        while abs((self.leftMotor.getPos() - startingLeft) + (self.rightMotor.getPos())-startingRight) < rotationsToDo and time.time() < startTime+timeout:
 
             error = KP * (self.mL.getPos() - self.mR.getPos()) # positive if bearing right
 
@@ -65,12 +68,21 @@ class Drivetrain():
         : return: if the distance was reached before the timeout
         : rtype: bool
         """
+
+        # ensure distance is always positive while speed could be either positive or negative
+        if turnDegrees < 0:
+            speed *= -1
+            turnDegrees *= -1
+
         rotationsToDo = (turnDegrees/360) * (math.pi * self.wheelSpacing) / (self.wheelDiameter * math.pi)
 
         startTime = time.time()
+        startingLeft = self.leftMotor.getPos()
+        startingRight = self.rightMotor.getPos()
+
         KP = 1
 
-        while abs(self.leftMotor.getPos() - self.rightMotor.getPos() < rotationsToDo and time.time() < startTime+timeout):
+        while abs((self.leftMotor.getPos() - startingLeft) + (self.rightMotor.getPos())-startingRight) < rotationsToDo and time.time() < startTime+timeout:
 
             error = KP * (self.leftMotor.getPos() + self.rightMotor.getPos())
 
@@ -99,20 +111,7 @@ class Drivetrain():
         """
         Stops both drivetrain motors
         """
-        self.setEffort(0)
-
-    def setSpeed(self, leftSpeed, rightSpeed):
-        """
-        Set the speed of both motors. The encoded motors will attempt to maintain their speeds with proportional control.
-        If only one speed is specified, both motors will be set at that speed.
-
-        : param leftSpeed: The speed (In centimeters per second) to set the left motor to.
-        : type leftSpeed: float
-        : param rightSpeed: The speed (In centimeters per second) to set the right motor to.
-        : type rightSpeed: float
-        """
-        leftSpeed = leftSpeed
-        rightSpeed = rightSpeed
+        self.setEffort(0,0)
 
     def setEncoderPosition(self, leftDegrees: float, rightDegrees: float):
         """

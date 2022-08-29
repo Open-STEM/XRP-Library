@@ -35,6 +35,11 @@ class EncodedMotor():
         else:
             self.motor.throttle = min(1, max(-1, effort)) # bound effort between [-1, 1]
 
+    def getSpeed(self):
+        firstTime = time.time()
+        firstPos = self.getPos()
+        speed = (self.getPos()-firstPos)/(time.time()-firstTime)
+        return speed
 
     def getPos(self):
         return self.enc.getPos()
