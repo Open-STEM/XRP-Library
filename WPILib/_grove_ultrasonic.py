@@ -127,7 +127,7 @@ class GroveUltrasonicRanger:
 		#De-initialize the sig pin.
 		self._sig.deinit()
 		
-	def getDistance(self):
+	def getDistance(self) -> float:
 		"""
 		Return the distance measured by the sensor in cm.
 
