@@ -1,6 +1,7 @@
 import time
 import board as _board
 import encoded_motor as _encoded_motor
+from encoded_motor import BrakeType
 import drivetrain as _drivetrain
 import grove_ultrasonic as _grove_ultrasonic
 import reflectance as _reflectance

@@ -141,7 +141,7 @@ class Drivetrain():
         """
         Sets the motor controller recirculation current decay mode, which controls whether the motor coasts or brakes.
 
-        :param brakeType: COAST_MODE sets the motor controller to the default fast recirculation current decay mode, while BRAKE_MODE sets it to slow decay mode
+        :param brakeType: BrakeType.COAST sets the motor controller to the default fast recirculation current decay mode, while BrakeType.BRAKE sets it to slow decay mode
         :type inTicks: BrakeType
         :param roundTo: The number of decimal places to round the encoder position to
         :type roundTo: int

@@ -7,8 +7,8 @@ from simple_pid import PID
 from enum import Enum
 
 class BrakeType(Enum):
-    BRAKE_MODE = 1
-    COAST_MODE = 2
+    BRAKE = 1
+    COAST = 2
 
 class EncodedMotor():
     def __init__(self, encoderPinA, encoderPinB , motorPin1, motorPin2, Name="Motor Unnamed", doFlip=False):
@@ -42,9 +42,9 @@ class EncodedMotor():
 
     # Set brake type of motor
     def setBrakeType(self, brakeType: BrakeType) -> None:
-        if brakeType == BrakeType.BRAKE_MODE:
+        if brakeType == BrakeType.BRAKE:
             self.motor.decay_mode = motor.SLOW_DECAY
-        elif brakeType == BrakeType.COAST_MODE:
+        elif brakeType == BrakeType.COAST:
             self.motor.decay_motor = motor.FAST_DECAY
         else:
             raise Exception("Unknown brake mode. This motor can only be set to BRAKE_MODE or COAST_MODE.")
