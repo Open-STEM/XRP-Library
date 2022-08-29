@@ -1,5 +1,6 @@
 import math
 import time
+from encoded_motor import BrakeType
 
 # Encapsulates the left and right motor objects and provides high-level functionality to manipulate robot locomotion.
 
@@ -51,7 +52,7 @@ class Drivetrain():
 
         return time.time() < startTime+timeout
 
-    def goTurn(self, turnDegrees: float, speed: float = 0.5, timeout: float = None):
+    def goTurn(self, turnDegrees: float, speed: float = 0.5, timeout: float = None) -> bool:
         """
         Turn the robot some relative heading given in turnDegrees, and exit function when the robot has reached that heading.
         Speed is bounded from -1 (turn counterclockwise the relative heading at full speed) to 1 (turn clockwise the relative heading at full speed)
@@ -80,7 +81,7 @@ class Drivetrain():
 
         return time.time() < startTime+timeout
 
-    def setEffort(self, leftEffort: float, rightEffort: float):
+    def setEffort(self, leftEffort: float, rightEffort: float) -> None:
         """
         Set the raw effort of both motors individually
 
@@ -95,13 +96,13 @@ class Drivetrain():
         self.leftMotor.setEffort(leftEffort)
         self.rightMotor.setEffort(rightEffort)
 
-    def stop(self):
+    def stop(self) -> None:
         """
         Stops both drivetrain motors
         """
         self.setEffort(0)
 
-    def setSpeed(self, leftSpeed, rightSpeed):
+    def setSpeed(self, leftSpeed: float, rightSpeed: float) -> None:
         """
         Set the speed of both motors. The encoded motors will attempt to maintain their speeds with proportional control.
         If only one speed is specified, both motors will be set at that speed.
@@ -114,7 +115,7 @@ class Drivetrain():
         leftSpeed = leftSpeed
         rightSpeed = rightSpeed
 
-    def setEncoderPosition(self, leftDegrees: float, rightDegrees: float):
+    def setEncoderPosition(self, leftDegrees: float, rightDegrees: float) -> None:
         """
         Set the position of the motors' encoders in degrees. Note that this does not actually move the motor but just recalibrates the stored encoder value.
         If only one encoder position is specified, the encoders for each motor will be set to that position.
@@ -131,10 +132,22 @@ class Drivetrain():
         self.motorLeft.setPos(degLeft)
         self.motorRight.setPos(degRight)
 
-    def getEncoderPosition(self):
+    def getEncoderPosition(self) -> tuple:
         """
         Return the current position of left and right motors' encoders in degrees as a tuple.
         """
         return self.leftMotor.getPos(),self.rightMotor.getPos()
+
+    def setBrakeType(self, brakeType: BrakeType) -> None:
+        """
+        Sets the motor controller recirculation current decay mode, which controls whether the motor coasts or brakes.
+
+        :param brakeType: COAST_MODE sets the motor controller to the default fast recirculation current decay mode, while BRAKE_MODE sets it to slow decay mode
+        :type inTicks: BrakeType
+        :param roundTo: The number of decimal places to round the encoder position to
+        :type roundTo: int
+        """
+        self.leftMotor.setBrakeType(brakeType)
+        self.rightMotor.setBrakeType(brakeType)
 
 
