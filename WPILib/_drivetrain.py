@@ -22,12 +22,12 @@ class Drivetrain:
         self.wheelDiameter = wheelDiameter
         self.wheelSpacing = wheelSpacing
 
-        self.setEncoderPosition(0, 0)
+        self.set_encoder_position(0, 0)
 
 
     # Go forward the specified distance in centimeters, and exit function when distance has been reached.
     # Speed is bounded from -1 (reverse at full speed) to 1 (forward at full speed)
-    def goStraight(self, distance: float, speed: float = 0.5, timeout: float = None) -> bool:
+    def go_straight(self, distance: float, speed: float = 0.5, timeout: float = None) -> bool:
         """
         Go forward the specified distance in centimeters, and exit function when distance has been reached.
         Speed is bounded from -1 (reverse at full speed) to 1 (forward at full speed)
@@ -47,8 +47,7 @@ class Drivetrain:
             distance *= -1
 
         startTime = time.time()
-        startingLeft = self.leftMotor.getPos()
-        startingRight = self.rightMotor.getPos()
+        startingLeft, startingRight = self.get_encoder_position()
 
         KP = 5
 
@@ -56,8 +55,9 @@ class Drivetrain:
 
         while True:
 
-            leftDelta = self.leftMotor.getPos() - startingLeft
-            rightDelta = self.rightMotor.getPos() - startingRight
+            leftPosition, rightPosition = self.get_encoder_position()
+            leftDelta = leftPosition - startingLeft
+            rightDelta = rightPosition - startingRight
 
             if _isTimeout(startTime, timeout) or abs(leftDelta + rightDelta)/2 >= rotationsToDo:
                 break
@@ -65,7 +65,7 @@ class Drivetrain:
             error = KP * (leftDelta - rightDelta) # positive if bearing right
             print("Error:", error, leftDelta, rightDelta, speed)
 
-            self.setEffort(speed - error, speed + error)
+            self.set_effort(speed - error, speed + error)
 
             time.sleep(0.01)
 
@@ -76,7 +76,7 @@ class Drivetrain:
         else:
             return time.time() < startTime+timeout
 
-    def goTurn(self, turnDegrees: float, speed: float = 0.5, timeout: float = None) -> bool:
+    def go_turn(self, turnDegrees: float, speed: float = 0.5, timeout: float = None) -> bool:
         """
         Turn the robot some relative heading given in turnDegrees, and exit function when the robot has reached that heading.
         Speed is bounded from -1 (turn counterclockwise the relative heading at full speed) to 1 (turn clockwise the relative heading at full speed)
@@ -99,15 +99,15 @@ class Drivetrain:
         rotationsToDo = (turnDegrees/360) * (math.pi * self.wheelSpacing) / (self.wheelDiameter * math.pi)
 
         startTime = time.time()
-        startingLeft = self.leftMotor.getPos()
-        startingRight = self.rightMotor.getPos()
+        startingLeft, startingRight = self.get_encoder_position()
 
         KP = 5
 
         while True:
 
-            leftDelta = self.leftMotor.getPos() - startingLeft
-            rightDelta = self.rightMotor.getPos() - startingRight
+            leftPosition, rightPosition = self.get_encoder_position()
+            leftDelta = leftPosition - startingLeft
+            rightDelta = rightPosition - startingRight
 
             if _isTimeout(startTime, timeout) or abs(leftDelta - rightDelta)/2 >= rotationsToDo:
                 break
@@ -115,7 +115,7 @@ class Drivetrain:
             error = KP * (leftDelta + rightDelta)
             print("Error:", error, leftDelta, rightDelta, speed)
             
-            self.setEffort(speed - error, -speed - error)
+            self.set_effort(speed - error, -speed - error)
 
             time.sleep(0.01)
 
@@ -126,7 +126,7 @@ class Drivetrain:
         else:
             return time.time() < startTime+timeout
 
-    def setEffort(self, leftEffort: float, rightEffort: float) -> None:
+    def set_effort(self, leftEffort: float, rightEffort: float) -> None:
         """
         Set the raw effort of both motors individually
 
@@ -145,7 +145,7 @@ class Drivetrain:
         """
         self.setEffort(0,0)
 
-    def setEncoderPosition(self, leftDegrees: float, rightDegrees: float) -> None:
+    def set_encoder_position(self, leftDegrees: float, rightDegrees: float) -> None:
         """
         Set the position of the motors' encoders in degrees. Note that this does not actually move the motor but just recalibrates the stored encoder value.
         If only one encoder position is specified, the encoders for each motor will be set to that position.
@@ -159,13 +159,13 @@ class Drivetrain:
         self.leftMotor.setPos(leftDegrees)
         self.rightMotor.setPos(rightDegrees)
 
-    def getEncoderPosition(self) -> tuple:
+    def get_encoder_position(self) -> tuple:
         """
         Return the current position of left and right motors' encoders in degrees as a tuple.
         """
         return self.leftMotor.getPos(),self.rightMotor.getPos()
 
-    def setBrakeType(self, brakeType: bool) -> None:
+    def set_brake_type(self, brakeType: bool) -> None:
         """
         Sets the motor controller recirculation current decay mode, which controls whether the motor coasts or brakes.
 
