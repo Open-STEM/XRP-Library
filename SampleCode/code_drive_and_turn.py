@@ -17,10 +17,10 @@ while not robot.buttons.isGP20Pressed():
 print("Button input found; Program starting")
 
 # Set motors to hold when set to 0 effort
-robot.drivetrain.setBrakeType(robot.BRAKE_MODE)
+robot.drivetrain.setBrakeType(robot.COAST_MODE)
 
 # Drive forward 6 cm
-robot.drivetrain.goStraight(6, 1)
+robot.drivetrain.goStraight(25, 1)
 
 time.sleep(1)
 
