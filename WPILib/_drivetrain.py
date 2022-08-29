@@ -124,11 +124,8 @@ class Drivetrain:
         : type rightDegrees: float
         """
 
-        degLeft = leftDegrees
-        degRight = rightDegrees
-
-        self.leftMotor.setPos(degLeft)
-        self.rightMotor.setPos(degRight)
+        self.leftMotor.setPos(leftDegrees)
+        self.rightMotor.setPos(rightDegrees)
 
     def getEncoderPosition(self) -> tuple:
         """
