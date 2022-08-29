@@ -45,7 +45,14 @@ class Drivetrain:
 
         rotationsToDo = distance  / (self.wheelDiameter * math.pi)
 
-        while abs((self.leftMotor.getPos() - startingLeft) + (self.rightMotor.getPos())-startingRight)/2 < rotationsToDo and (timeout is None or time.time() < startTime+timeout):
+        while True:
+
+            exitFromTimeout = timeout is not None and time.time() >= startTime+timeout
+            leftDelta = self.leftMotor.getPos() - startingLeft
+            rightDelta = self.rightMotor.getPos() - startingRight
+
+            if exitFromTimeout or abs(leftDelta + rightDelta)/2 >= rotationsToDo:
+                break
 
             error = KP * (self.leftMotor.getPos() - self.rightMotor.getPos()) # positive if bearing right
             print("Error:", error, self.leftMotor.getPos(), self.rightMotor.getPos(), speed)
@@ -89,8 +96,15 @@ class Drivetrain:
 
         KP = 1
 
-        while abs((self.leftMotor.getPos() - startingLeft) + (self.rightMotor.getPos())-startingRight)/2 < rotationsToDo and (timeout is None or time.time() < startTime+timeout):
+        while True:
 
+            exitFromTimeout = timeout is not None and time.time() >= startTime+timeout
+            leftDelta = self.leftMotor.getPos() - startingLeft
+            rightDelta = self.rightMotor.getPos() - startingRight
+
+            if exitFromTimeout or abs(leftDelta - rightDelta)/2 >= rotationsToDo:
+                break
+        
             error = KP * (self.leftMotor.getPos() + self.rightMotor.getPos())
 
             self.setEffort(speed - error, -speed - error)
