@@ -1,4 +1,4 @@
-from WPILib import *
+import SampleCode.code_drive_and_turn
 
 #drive straight
 def driveStraight():
@@ -58,11 +58,4 @@ def lineTrack():
         error = refl.right() - refl.left()
         driveBase.setEffort(0.6 + error * Kp, 0.6 -  error * Kp)
 
-time.sleep(6)
-swingTurn()
-time.sleep(10)
-driveBase.setEffort(0, 0)
 
-while True:
-    print("Left:", refl.left(), "right:", refl.right())
-    time.sleep(0.25)
