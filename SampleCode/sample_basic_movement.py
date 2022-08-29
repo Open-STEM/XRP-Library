@@ -8,23 +8,23 @@ from WPILib.WPILib import *
     have the robot driving straight and turning
 """
 
-def testDrive():
+def test_drive():
     # Drive forward cm
-    drivetrain.goStraight(25, 0.5)
+    drivetrain.go_straight(25, 0.5)
 
     time.sleep(1)
 
     # turn 90 degrees clockwise
-    drivetrain.goTurn(90,0.5)
+    drivetrain.go_turn(90,0.5)
 
     time.sleep(1)
 
     # turn 90 degrees counter clockwise by setting speed negative
-    drivetrain.goTurn(90, -0.5)
+    drivetrain.go_turn(90, -0.5)
 
     time.sleep(1)
 
     # drive backwards 25 cm by setting distance negative. s
     # There is no difference between setting speed or distance negative, both work
-    drivetrain.goStraight(-25,0.5)
+    drivetrain.go_straight(-25,0.5)
 
