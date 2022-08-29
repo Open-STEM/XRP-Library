@@ -19,8 +19,8 @@ print("Button input found; Program starting")
 # Set motors to hold when set to 0 effort
 robot.drivetrain.setBrakeType(robot.BRAKE_MODE)
 
-# Drive forward 6 inches
-robot.drivetrain.goStraight(6, .5)
+# Drive forward 6 cm
+robot.drivetrain.goStraight(6, 1)
 
 time.sleep(1)
 

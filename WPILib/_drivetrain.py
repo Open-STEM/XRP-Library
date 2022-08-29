@@ -48,9 +48,11 @@ class Drivetrain:
         while abs((self.leftMotor.getPos() - startingLeft) + (self.rightMotor.getPos())-startingRight) < rotationsToDo and (timeout is None or time.time() < startTime+timeout):
 
             error = KP * (self.leftMotor.getPos() - self.rightMotor.getPos()) # positive if bearing right
-            print("Error:", error, self.leftMotor.getPos())
+            print("Error:", error, self.leftMotor.getPos(), self.rightMotor.getPos(), speed)
 
             self.setEffort(speed - error, speed + error)
+
+            time.sleep(0.01)
 
         self.stop()
 
@@ -89,6 +91,8 @@ class Drivetrain:
             error = KP * (self.leftMotor.getPos() + self.rightMotor.getPos())
 
             self.setEffort(speed - error, -speed - error)
+
+            time.sleep(0.01)
 
         self.stop()
 
