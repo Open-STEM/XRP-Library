@@ -1,5 +1,5 @@
 import time
-import WPILib as robot
+import WPILib.WPILib as robot
 
 """
     File meant to help students test basic drive functionality.

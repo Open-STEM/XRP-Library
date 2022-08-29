@@ -1,12 +1,15 @@
 import board as _board
-import drivetrain_module as _drivetrain
-import grove_ultrasonic as _grove_ultrasonic
-import reflectance_module as _reflectance
-import servo_module as _servo
-import buttons_module as _buttons
+from . import _drivetrain
+from . import _grove_ultrasonic
+from . import _reflectance
+from . import _servo
+from . import _buttons
+from . import _encoded_motor
 
 import time
-from encoded_motor_module import BrakeType
+
+BRAKE_MODE = True;
+COAST_MODE = False;
 
 # hidden motor variables
 _leftMotor = _drivetrain._encoded_motor.EncodedMotor(encoderPinA=_board.GP4, encoderPinB=_board.GP5,

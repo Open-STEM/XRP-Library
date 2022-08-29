@@ -1,18 +1,18 @@
 import math
 import time
-import encoded_motor2 as _encoded_motor
+from . import _encoded_motor
 
 # Encapsulates the left and right motor objects and provides high-level functionality to manipulate robot locomotion.
 
 class Drivetrain:
 
-    def __init__(self, leftEncodedMotor, rightEncodedMotor, wDiam, wSpacing): # wheelDiameter and wheelSpacing in cm
+    def __init__(self, leftEncodedMotor, rightEncodedMotor, wheelDiameter, wheelSpacing): # wheelDiameter and wheelSpacing in cm
 
         self.leftMotor = leftEncodedMotor
         self.rightMotor = rightEncodedMotor
         
-        self.wheelDiameter = wDiam
-        self.wheelSpacing = wSpacing
+        self.wheelDiameter = wheelDiameter
+        self.wheelSpacing = wheelSpacing
 
         self.setEncoderPosition(0)
 
@@ -137,11 +137,11 @@ class Drivetrain:
         """
         return self.leftMotor.getPos(),self.rightMotor.getPos()
 
-    def setBrakeType(self, brakeType: _encoded_motor.BrakeType) -> None:
+    def setBrakeType(self, brakeType: bool) -> None:
         """
         Sets the motor controller recirculation current decay mode, which controls whether the motor coasts or brakes.
 
-        :param brakeType: BrakeType.COAST sets the motor controller to the default fast recirculation current decay mode, while BrakeType.BRAKE sets it to slow decay mode
+        :param brakeType: false sets the motor controller to the default fast recirculation current decay mode (coast), while true sets it to slow decay mode (brake)
         :type inTicks: BrakeType
         :param roundTo: The number of decimal places to round the encoder position to
         :type roundTo: int

@@ -2,19 +2,13 @@
 from adafruit_motor import motor
 import pwmio
 import time
-import encoder
-from simple_pid import PID
-from enum import Enum
-
-class BrakeType(Enum):
-    BRAKE = 1
-    COAST = 2
+from . import _encoder
 
 class EncodedMotor:
     def __init__(self, encoderPinA, encoderPinB , motorPin1, motorPin2, Name="Motor Unnamed", doFlip=False):
         
         self.name = Name
-        self.encoder = encoder.Encoder(pinA=encoderPinA, pinB=encoderPinB, ticksPerRev=144, doFlip=doFlip)
+        self.encoder = _encoder.Encoder(pinA=encoderPinA, pinB=encoderPinB, ticksPerRev=144, doFlip=doFlip)
         self.flip = doFlip
         
         MA = pwmio.PWMOut(motorPin1, frequency=10000)
@@ -40,14 +34,12 @@ class EncodedMotor:
         else:
             self.motor.throttle = min(1, max(-1, effort)) # bound effort between [-1, 1]
 
-    # Set brake type of motor
+    # Set brake type of motor. False = coast, true = brake
     def setBrakeType(self, brakeType: BrakeType) -> None:
-        if brakeType == BrakeType.BRAKE:
-            self.motor.decay_mode = motor.SLOW_DECAY
-        elif brakeType == BrakeType.COAST:
-            self.motor.decay_motor = motor.FAST_DECAY
+        if brakeType:
+            self.motor.decay_mode = motor.SLOW_DECAY # brake
         else:
-            raise Exception("Unknown brake mode. This motor can only be set to BRAKE_MODE or COAST_MODE.")
+            self.motor.decay_motor = motor.FAST_DECAY
 
 
     def getPos(self):
