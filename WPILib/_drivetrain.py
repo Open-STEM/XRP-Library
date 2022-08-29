@@ -113,7 +113,8 @@ class Drivetrain:
                 break
         
             error = KP * (self.leftMotor.getPos() + self.rightMotor.getPos())
-
+            print("Error:", error, self.leftMotor.getPos(), self.rightMotor.getPos(), speed)
+            
             self.setEffort(speed - error, -speed + error)
 
             time.sleep(0.01)
