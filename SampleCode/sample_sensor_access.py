@@ -1,7 +1,7 @@
 from WPILib.WPILib import *
 
 # Polling data from the ultrasonic sensor
-def ultrasonic_test():
+def ultrasonicTest():
     while True:
         try:
             print((sonar.getDistance()))

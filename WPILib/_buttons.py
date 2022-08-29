@@ -13,7 +13,7 @@ class Buttons:
         self._buttonGP20 = self._createButton(board.GP20)
         self._buttonGP21 = self._createButton(board.GP21)
 
-    def isGP20Pressed(self) -> bool:
+    def is_GP20_pressed(self) -> bool:
         """
         Get whether the GP20 button on the RP2040 microcontroller has been pressed
         : return: if the GP20 button was pressed
@@ -21,7 +21,7 @@ class Buttons:
         """
         return not self._buttonGP20.value
 
-    def isGP21Pressed(self) -> bool:
+    def is_GP21_pressed(self) -> bool:
         """
         Get whether the GP21 button on the RP2040 microcontroller has been pressed
         : return: if the GP21 button was pressed
