@@ -9,8 +9,9 @@ import WPILib as robot
 """
 
 # Wait until user command before running
-while robot.buttons.isGP20Pressed():
+while not robot.buttons.isGP20Pressed():
     print("Waiting for button signal")
+
 
 print("Button input found; Program starting")
 

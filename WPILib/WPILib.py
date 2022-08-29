@@ -1,19 +1,18 @@
 import board as _board
-import encoded_motor as _encoded_motor
-import drivetrain as _drivetrain
+import drivetrain_module as _drivetrain
 import grove_ultrasonic as _grove_ultrasonic
-import reflectance as _reflectance
-import servo as _servo
-import buttons as _buttons
+import reflectance_module as _reflectance
+import servo_module as _servo
+import buttons_module as _buttons
 
 import time
-from encoded_motor import BrakeType
+from encoded_motor_module import BrakeType
 
 # hidden motor variables
-_leftMotor = _encoded_motor.EncodedMotor(encoderPinA=_board.GP4, encoderPinB=_board.GP5,
+_leftMotor = _drivetrain._encoded_motor.EncodedMotor(encoderPinA=_board.GP4, encoderPinB=_board.GP5,
                                                motorPin1=_board.GP8, motorPin2=_board.GP9, doFlip=True)
 
-_rightMotor = _encoded_motor.EncodedMotor(encoderPinA=_board.GP2, encoderPinB=_board.GP3,
+_rightMotor = _drivetrain._encoded_motor.EncodedMotor(encoderPinA=_board.GP2, encoderPinB=_board.GP3,
                                                motorPin1=_board.GP10, motorPin2=_board.GP11, doFlip=False)
 
 # Publicly-accessible objects
