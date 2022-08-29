@@ -1,7 +1,7 @@
 # Write your code here :-)
 import rotaryio
 
-class Encoder():
+class Encoder:
 
     def __init__(self, pinA, pinB, ticksPerRev, doFlip=False):
         self.ticksPerRev = ticksPerRev

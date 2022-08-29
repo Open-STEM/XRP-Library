@@ -4,7 +4,7 @@ from encoded_motor import BrakeType
 
 # Encapsulates the left and right motor objects and provides high-level functionality to manipulate robot locomotion.
 
-class Drivetrain():
+class Drivetrain:
 
     def __init__(self, leftEncodedMotor, rightEncodedMotor, wDiam, wSpacing): # wheelDiameter and wheelSpacing in cm
 

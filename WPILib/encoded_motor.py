@@ -10,7 +10,7 @@ class BrakeType(Enum):
     BRAKE = 1
     COAST = 2
 
-class EncodedMotor():
+class EncodedMotor:
     def __init__(self, encoderPinA, encoderPinB , motorPin1, motorPin2, Name="Motor Unnamed", doFlip=False):
         
         self.name = Name
