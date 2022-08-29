@@ -19,7 +19,7 @@ class Buttons:
         : return: if the GP20 button was pressed
         : rtype: bool
         """
-        return self._buttonGP20.value
+        return not self._buttonGP20.value
 
     def isGP21Pressed(self) -> bool:
         """
@@ -27,4 +27,4 @@ class Buttons:
         : return: if the GP21 button was pressed
         : rtype: bool
         """
-        return self._buttonGP21.value
+        return not self._buttonGP21.value

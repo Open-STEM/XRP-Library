@@ -14,7 +14,7 @@ class Drivetrain:
         self.wheelDiameter = wheelDiameter
         self.wheelSpacing = wheelSpacing
 
-        self.setEncoderPosition(0)
+        self.setEncoderPosition(0, 0)
 
     # Go forward the specified distance in centimeters, and exit function when distance has been reached.
     # Speed is bounded from -1 (reverse at full speed) to 1 (forward at full speed)
@@ -47,7 +47,8 @@ class Drivetrain:
 
         while abs((self.leftMotor.getPos() - startingLeft) + (self.rightMotor.getPos())-startingRight) < rotationsToDo and time.time() < startTime+timeout:
 
-            error = KP * (self.mL.getPos() - self.mR.getPos()) # positive if bearing right
+            error = KP * (self.leftMotor.getPos() - self.rightMotor.getPos()) # positive if bearing right
+            print("Error:", error, self.leftMotor.getPos())
 
             self.setEffort(speed - error, speed + error)
 
@@ -128,8 +129,8 @@ class Drivetrain:
         degLeft = leftDegrees
         degRight = rightDegrees
 
-        self.motorLeft.setPos(degLeft)
-        self.motorRight.setPos(degRight)
+        self.leftMotor.setPos(degLeft)
+        self.rightMotor.setPos(degRight)
 
     def getEncoderPosition(self) -> tuple:
         """

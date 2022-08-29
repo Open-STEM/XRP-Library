@@ -23,12 +23,12 @@ class EncodedMotor:
     def __repr__(self):
         print(self.name)
         print("Effort   " + str(self.effort))
-        print("Position " + str(self.enc.getPos()))
+        print("Position " + str(self.encoder.getPos()))
         print("Flipped  " + str(self.flip))
         pass
 
     # set motor throttle (effort) betwen [-1, 1]
-    def setEffort(self, effort: float):
+    def setEffort(self, effort: float)->None:
         if effort is None:
             self.motor.throttle = None
         else:
@@ -42,8 +42,10 @@ class EncodedMotor:
             self.motor.decay_motor = motor.FAST_DECAY
 
 
-    def getPos(self):
-        return self.enc.getPos()
+    def getPos(self) -> float:
+        encoderValue = self.encoder.getPos()
+        assert(encoderValue is not None)
+        return encoderValue
 
-    def setPos(self, pos=0):
-        self.enc.setPos(pos)
+    def setPos(self, pos: float = 0):
+        self.encoder.setPos(pos)

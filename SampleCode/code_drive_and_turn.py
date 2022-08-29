@@ -10,13 +10,14 @@ import WPILib.WPILib as robot
 
 # Wait until user command before running
 while not robot.buttons.isGP20Pressed():
+    time.sleep(.01)
     print("Waiting for button signal")
 
 
 print("Button input found; Program starting")
 
 # Set motors to hold when set to 0 effort
-robot.drivetrain.setBrakeType(robot.BrakeType.BRAKE)
+robot.drivetrain.setBrakeType(robot.BRAKE_MODE)
 
 # Drive forward 6 inches
 robot.drivetrain.goStraight(6, .5)
