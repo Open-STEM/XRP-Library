@@ -5,7 +5,7 @@ from WPILib.WPILib import *
     File meant to help students test basic drive functionality.
 
     By the end of completing this file the student's robot should
-    have the robot driving straight and turning after waiting for a button press.
+    have the robot driving straight and turning
 """
 
 def testDrive():
