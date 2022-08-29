@@ -35,7 +35,7 @@ class EncodedMotor:
             self.motor.throttle = min(1, max(-1, effort)) # bound effort between [-1, 1]
 
     # Set brake type of motor. False = coast, true = brake
-    def setBrakeType(self, brakeType: BrakeType) -> None:
+    def setBrakeType(self, brakeType: bool) -> None:
         if brakeType:
             self.motor.decay_mode = motor.SLOW_DECAY # brake
         else:

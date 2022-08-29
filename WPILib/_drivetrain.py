@@ -107,8 +107,6 @@ class Drivetrain:
         : param rightEffort: The power (Bounded from -1 to 1) to set the right motor to.
         : type rightEffort: float
         """
-        leftEffort = leftEffort
-        rightEffort = rightEffort
 
         self.leftMotor.setEffort(leftEffort)
         self.rightMotor.setEffort(rightEffort)
