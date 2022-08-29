@@ -1,4 +1,4 @@
-import SampleCode.code_drive_and_turn
+import SampleCode.sample_basic_movement
 
 #drive straight
 def driveStraight():
