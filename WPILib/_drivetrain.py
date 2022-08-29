@@ -2,6 +2,14 @@ import math
 import time
 from . import _encoded_motor
 
+
+def _isTimeout(startTime, timeout):
+
+    if timeout is None:
+        return False
+    return time.time() >= startTime+timeout
+
+
 # Encapsulates the left and right motor objects and provides high-level functionality to manipulate robot locomotion.
 
 class Drivetrain:
@@ -15,6 +23,7 @@ class Drivetrain:
         self.wheelSpacing = wheelSpacing
 
         self.setEncoderPosition(0, 0)
+
 
     # Go forward the specified distance in centimeters, and exit function when distance has been reached.
     # Speed is bounded from -1 (reverse at full speed) to 1 (forward at full speed)
@@ -45,7 +54,13 @@ class Drivetrain:
 
         rotationsToDo = distance  / (self.wheelDiameter * math.pi)
 
-        while abs((self.leftMotor.getPos() - startingLeft) + (self.rightMotor.getPos())-startingRight)/2 < rotationsToDo and (timeout is None or time.time() < startTime+timeout):
+        while True:
+
+            leftDelta = self.leftMotor.getPos() - startingLeft
+            rightDelta = self.rightMotor.getPos() - startingRight
+
+            if _isTimeout(startTime, timeout) or abs(leftDelta + rightDelta)/2 >= rotationsToDo:
+                break
 
             error = KP * (self.leftMotor.getPos() - self.rightMotor.getPos()) # positive if bearing right
             print("Error:", error, self.leftMotor.getPos(), self.rightMotor.getPos(), speed)
@@ -89,8 +104,14 @@ class Drivetrain:
 
         KP = 1
 
-        while abs((self.leftMotor.getPos() - startingLeft) + (self.rightMotor.getPos())-startingRight)/2 < rotationsToDo and (timeout is None or time.time() < startTime+timeout):
+        while True:
 
+            leftDelta = self.leftMotor.getPos() - startingLeft
+            rightDelta = self.rightMotor.getPos() - startingRight
+
+            if _isTimeout(startTime, timeout) or abs(leftDelta - rightDelta)/2 >= rotationsToDo:
+                break
+        
             error = KP * (self.leftMotor.getPos() + self.rightMotor.getPos())
 
             self.setEffort(speed - error, -speed + error)
