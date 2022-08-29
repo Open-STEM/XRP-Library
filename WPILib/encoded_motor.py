@@ -40,13 +40,6 @@ class EncodedMotor():
         else:
             self.motor.throttle = min(1, max(-1, effort)) # bound effort between [-1, 1]
 
-<<<<<<< HEAD
-    def getSpeed(self):
-        firstTime = time.time()
-        firstPos = self.getPos()
-        speed = (self.getPos()-firstPos)/(time.time()-firstTime)
-        return speed
-=======
     # Set brake type of motor
     def setBrakeType(self, brakeType: BrakeType) -> None:
         if brakeType == BrakeType.BRAKE_MODE:
@@ -56,7 +49,6 @@ class EncodedMotor():
         else:
             raise Exception("Unknown brake mode. This motor can only be set to BRAKE_MODE or COAST_MODE.")
 
->>>>>>> e9a78549d18b51873c591c3e229ed1e0e0dccf66
 
     def getPos(self):
         return self.enc.getPos()

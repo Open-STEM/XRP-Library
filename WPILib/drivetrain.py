@@ -112,24 +112,7 @@ class Drivetrain():
         """
         Stops both drivetrain motors
         """
-<<<<<<< HEAD
         self.setEffort(0,0)
-=======
-        self.setEffort(0)
-
-    def setSpeed(self, leftSpeed: float, rightSpeed: float) -> None:
-        """
-        Set the speed of both motors. The encoded motors will attempt to maintain their speeds with proportional control.
-        If only one speed is specified, both motors will be set at that speed.
-
-        : param leftSpeed: The speed (In centimeters per second) to set the left motor to.
-        : type leftSpeed: float
-        : param rightSpeed: The speed (In centimeters per second) to set the right motor to.
-        : type rightSpeed: float
-        """
-        leftSpeed = leftSpeed
-        rightSpeed = rightSpeed
->>>>>>> e9a78549d18b51873c591c3e229ed1e0e0dccf66
 
     def setEncoderPosition(self, leftDegrees: float, rightDegrees: float) -> None:
         """
