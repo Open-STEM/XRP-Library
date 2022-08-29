@@ -93,7 +93,7 @@ class Drivetrain:
 
             error = KP * (self.leftMotor.getPos() + self.rightMotor.getPos())
 
-            self.setEffort(speed - error, -speed - error)
+            self.setEffort(speed - error, -speed + error)
 
             time.sleep(0.01)
 
