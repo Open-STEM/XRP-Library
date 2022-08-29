@@ -45,5 +45,5 @@ class EncodedMotor:
     def getPos(self) -> float:
         return self.encoder.getPos()
 
-    def setPos(self, pos: float = 0):
+    def setPos(self, pos: float = 0) -> None:
         self.encoder.setPos(pos)
