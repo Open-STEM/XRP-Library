@@ -4,7 +4,7 @@ from WPILib.WPILib import *
 def ultrasonic_test():
     while True:
         try:
-            print((sonar.getDistance()))
+            print(sonar.get_distance())
         except RuntimeError:
             print("Retrying!")
             pass
@@ -40,7 +40,7 @@ def wait_for_button():
     print("Waiting for button signal from GP20")
 
     # Wait until user command before running
-    while not buttons.isGP20Pressed():
+    while not buttons.is_GP20_pressed():
         time.sleep(.01)
 
     print("Button input found; Program starting")
