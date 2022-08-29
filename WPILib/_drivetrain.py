@@ -14,13 +14,13 @@ def _isTimeout(startTime, timeout):
 
 class Drivetrain:
 
-    def __init__(self, leftEncodedMotor, rightEncodedMotor, wheelDiameter, wheelSpacing): # wheelDiameter and wheelSpacing in cm
+    def __init__(self, left_encoded_motor, right_encoded_motor, wheel_diameter, wheel_spacing): # wheelDiameter and wheelSpacing in cm
 
-        self.leftMotor = leftEncodedMotor
-        self.rightMotor = rightEncodedMotor
+        self.leftMotor = left_encoded_motor
+        self.rightMotor = right_encoded_motor
         
-        self.wheelDiameter = wheelDiameter
-        self.wheelSpacing = wheelSpacing
+        self.wheelDiameter = wheel_diameter
+        self.wheelSpacing = wheel_spacing
 
         self.set_encoder_position(0, 0)
 
@@ -76,7 +76,7 @@ class Drivetrain:
         else:
             return time.time() < startTime+timeout
 
-    def go_turn(self, turnDegrees: float, speed: float = 0.5, timeout: float = None) -> bool:
+    def go_turn(self, turn_degrees: float, speed: float = 0.5, timeout: float = None) -> bool:
         """
         Turn the robot some relative heading given in turnDegrees, and exit function when the robot has reached that heading.
         Speed is bounded from -1 (turn counterclockwise the relative heading at full speed) to 1 (turn clockwise the relative heading at full speed)
@@ -92,11 +92,11 @@ class Drivetrain:
         """
 
         # ensure distance is always positive while speed could be either positive or negative
-        if turnDegrees < 0:
+        if turn_degrees < 0:
             speed *= -1
-            turnDegrees *= -1
+            turn_degrees *= -1
 
-        rotationsToDo = (turnDegrees/360) * (math.pi * self.wheelSpacing) / (self.wheelDiameter * math.pi)
+        rotationsToDo = (turn_degrees/360) * (math.pi * self.wheelSpacing) / (self.wheelDiameter * math.pi)
 
         startTime = time.time()
         startingLeft, startingRight = self.get_encoder_position()
@@ -126,7 +126,7 @@ class Drivetrain:
         else:
             return time.time() < startTime+timeout
 
-    def set_effort(self, leftEffort: float, rightEffort: float) -> None:
+    def set_effort(self, left_effort: float, right_effort: float) -> None:
         """
         Set the raw effort of both motors individually
 
@@ -136,8 +136,8 @@ class Drivetrain:
         : type rightEffort: float
         """
 
-        self.leftMotor.setEffort(leftEffort)
-        self.rightMotor.setEffort(rightEffort)
+        self.leftMotor.setEffort(left_effort)
+        self.rightMotor.setEffort(right_effort)
 
     def stop(self) -> None:
         """
@@ -145,7 +145,7 @@ class Drivetrain:
         """
         self.set_effort(0,0)
 
-    def set_encoder_position(self, leftDegrees: float, rightDegrees: float) -> None:
+    def set_encoder_position(self, left_degrees: float, right_degrees: float) -> None:
         """
         Set the position of the motors' encoders in degrees. Note that this does not actually move the motor but just recalibrates the stored encoder value.
         If only one encoder position is specified, the encoders for each motor will be set to that position.
@@ -156,8 +156,8 @@ class Drivetrain:
         : type rightDegrees: float
         """
 
-        self.leftMotor.setPos(leftDegrees)
-        self.rightMotor.setPos(rightDegrees)
+        self.leftMotor.setPos(left_degrees)
+        self.rightMotor.setPos(right_degrees)
 
     def get_encoder_position(self) -> tuple:
         """
@@ -165,7 +165,7 @@ class Drivetrain:
         """
         return self.leftMotor.getPos(),self.rightMotor.getPos()
 
-    def set_brake_type(self, brakeType: bool) -> None:
+    def set_brake_type(self, brake_type: bool) -> None:
         """
         Sets the motor controller recirculation current decay mode, which controls whether the motor coasts or brakes.
 
@@ -174,7 +174,7 @@ class Drivetrain:
         :param roundTo: The number of decimal places to round the encoder position to
         :type roundTo: int
         """
-        self.leftMotor.setBrakeType(brakeType)
-        self.rightMotor.setBrakeType(brakeType)
+        self.leftMotor.setBrakeType(brake_type)
+        self.rightMotor.setBrakeType(brake_type)
 
 
