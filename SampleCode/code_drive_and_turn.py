@@ -1,6 +1,5 @@
 import time
 import WPILib as robot
-from WPILib.encoded_motor import BrakeType
 
 """
     File meant to help students test basic drive functionality.
@@ -16,7 +15,7 @@ while robot.buttons.isGP20Pressed():
 print("Button input found; Program starting")
 
 # Set motors to hold when set to 0 effort
-robot.drivetrain.setBrakeType(BrakeType.BRAKE)
+robot.drivetrain.setBrakeType(robot.BrakeType.BRAKE)
 
 # Drive forward 6 inches
 robot.drivetrain.goStraight(6, .5)
