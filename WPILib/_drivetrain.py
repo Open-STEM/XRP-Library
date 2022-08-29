@@ -62,8 +62,8 @@ class Drivetrain:
             if _isTimeout(startTime, timeout) or abs(leftDelta + rightDelta)/2 >= rotationsToDo:
                 break
 
-            error = KP * (self.leftMotor.getPos() - self.rightMotor.getPos()) # positive if bearing right
-            print("Error:", error, self.leftMotor.getPos(), self.rightMotor.getPos(), speed)
+            error = KP * (leftDelta - rightDelta) # positive if bearing right
+            print("Error:", error, leftDelta, rightDelta, speed)
 
             self.setEffort(speed - error, speed + error)
 
@@ -112,7 +112,7 @@ class Drivetrain:
             if _isTimeout(startTime, timeout) or abs(leftDelta - rightDelta)/2 >= rotationsToDo:
                 break
         
-            error = KP * (self.leftMotor.getPos() + self.rightMotor.getPos())
+            error = KP * (leftDelta + rightDelta)
 
             self.setEffort(speed - error, -speed + error)
 
