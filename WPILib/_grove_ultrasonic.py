@@ -116,35 +116,22 @@ class GroveUltrasonicRanger:
 			self._sig.value = False	 # Set trig low
 			
 	def __enter__(self):
-		"""Allows for use in context managers."""
+		#Allows for use in context managers.
 		return self
 	
 	def __exit__(self, exc_type, exc_val, exc_tb):
-		"""Automatically de-initialize after a context manager."""
-		self.deinit()
+		#Automatically de-initialize after a context manager.
+		self._deinit()
 		
-	def deinit(self):
-		"""De-initialize the sig pin."""
+	def _deinit(self):
+		#De-initialize the sig pin.
 		self._sig.deinit()
 		
-	@property
-	def distance(self):
+	def getDistance(self):
 		"""
-		Return the distance measured by the sensor in cm (or user specified units.)
+		Return the distance measured by the sensor in cm.
 
-		This is the function that will be called most often in user code. The
-		distance is calculated by timing a pulse from the sensor, indicating
-		how long between when the sensor sent out an ultrasonic signal and when
-		it bounced back and was received again.
-
-		If no signal is received, we'll throw a RuntimeError exception. This means
-		either the sensor was moving too fast to be pointing in the right
-		direction to pick up the ultrasonic signal when it bounced back (less
-		likely), or the object off of which the signal bounced is too far away
-		for the sensor to handle. In my experience, the sensor can detect
-		objects over 460 cm away.
-
-		:return: Distance in centimeters (can be divided by a unit conv factor.)
+		:return: Distance in centimeters
 		:rtype: float
 		"""
 		return self._dist_one_wire()
