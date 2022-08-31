@@ -42,3 +42,12 @@ def polygon(side_length, sides):
 def circle():
     while True:
         drivetrain.set_effort(8, 1)
+
+# Move servo around
+def test_servo():
+    servo.setDegrees(135)
+    time.sleep(2)
+    servo.setDegrees(0)
+    time.sleep(2)
+    servo.setDegrees(60)
+    time.sleep(2)

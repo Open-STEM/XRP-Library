@@ -2,7 +2,7 @@ import board as _board
 from . import _drivetrain
 from . import _grove_ultrasonic
 from . import _reflectance
-#from . import _servo
+from . import _servo
 from . import _buttons
 from . import _encoded_motor
 from . import _led

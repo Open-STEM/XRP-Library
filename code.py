@@ -6,6 +6,6 @@ from WPILib.WPILib import *
 def main():
     # Your code here!
     wait_for_button()
-    test_leds()
+    test_servo()
 
 main()
