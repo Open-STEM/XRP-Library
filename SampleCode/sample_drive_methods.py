@@ -41,4 +41,4 @@ def polygon(side_length, sides):
 # Driving in a circle
 def circle():
     while True:
-        drivetrain.set_effort(0.6, 0.75)
+        drivetrain.set_effort(8, 1)

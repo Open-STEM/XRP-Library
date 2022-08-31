@@ -20,7 +20,7 @@ _rightMotor = _drivetrain._encoded_motor.EncodedMotor(encoderPinA=_board.GP2, en
                                                motorPin1=_board.GP10, motorPin2=_board.GP11, doFlip=False)
 
 # Publicly-accessible objects
-drivetrain = _drivetrain.Drivetrain(_leftMotor, _rightMotor, wheelDiameter=6.5, wheelSpacing=16) # units in cm
+drivetrain = _drivetrain.Drivetrain(_leftMotor, _rightMotor, wheel_diameter=6.5, wheel_spacing=16) # units in cm
 reflectance = _reflectance.Reflectance(_board.GP27, _board.GP26)
 sonar = _grove_ultrasonic.GroveUltrasonicRanger(_board.GP28)
 led = _led.RGBLED(_board.GP18)

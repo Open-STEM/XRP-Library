@@ -10,21 +10,21 @@ from WPILib.WPILib import *
 
 def test_drive():
     # Drive forward cm
-    drivetrain.go_straight(25, 0.5)
+    drivetrain.go_straight(25, 0.8)
 
     time.sleep(1)
 
     # turn 90 degrees clockwise
-    drivetrain.go_turn(90,0.5)
+    drivetrain.go_turn(90,0.8)
 
     time.sleep(1)
 
     # turn 90 degrees counter clockwise by setting speed negative
-    drivetrain.go_turn(90, -0.5)
+    drivetrain.go_turn(90, -0.8)
 
     time.sleep(1)
 
     # drive backwards 25 cm by setting distance negative. s
     # There is no difference between setting speed or distance negative, both work
-    drivetrain.go_straight(-25,0.5)
+    drivetrain.go_straight(-25,0.8)
 
