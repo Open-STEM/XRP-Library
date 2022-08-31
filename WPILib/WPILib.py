@@ -9,9 +9,6 @@ from . import _led
 
 import time
 
-BRAKE_MODE = True
-COAST_MODE = False
-
 # hidden motor variables
 _leftMotor = _drivetrain._encoded_motor.EncodedMotor(encoderPinA=_board.GP4, encoderPinB=_board.GP5,
                                                motorPin1=_board.GP8, motorPin2=_board.GP9, doFlip=True)

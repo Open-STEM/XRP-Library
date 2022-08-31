@@ -164,17 +164,3 @@ class Drivetrain:
         Return the current position of left and right motors' encoders in degrees as a tuple.
         """
         return self.leftMotor.getPos(),self.rightMotor.getPos()
-
-    def set_brake_type(self, brake_type: bool) -> None:
-        """
-        Sets the motor controller recirculation current decay mode, which controls whether the motor coasts or brakes.
-
-        :param brakeType: false sets the motor controller to the default fast recirculation current decay mode (coast), while true sets it to slow decay mode (brake)
-        :type inTicks: BrakeType
-        :param roundTo: The number of decimal places to round the encoder position to
-        :type roundTo: int
-        """
-        self.leftMotor.setBrakeType(brake_type)
-        self.rightMotor.setBrakeType(brake_type)
-
-
