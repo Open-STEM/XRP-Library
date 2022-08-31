@@ -44,3 +44,17 @@ def wait_for_button():
         time.sleep(.01)
 
     print("Button input found; Program starting")
+
+def test_leds():
+    brightness = 1
+    while brightness > 0:
+        led.set_brightness(brightness)
+        led.set_color(255,0,0)
+        time.sleep(0.5)
+        led.set_color(0,255,0)
+        time.sleep(0.5)
+        led.set_color(0,0,255)
+        time.sleep(0.5)
+        brightness -= 0.1
+    led.set_color(0,0,0)
+    led.set_brightness(0)
