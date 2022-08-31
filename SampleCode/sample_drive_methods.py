@@ -3,7 +3,6 @@ from WPILib.WPILib import *
 """
     By the end of this file students will learn how to control the drivetrain,
     both by setting effort values directly to the motors and by using go_straight and go_turn
-    They will also learn the difference between the two BrakeTypes (BRAKE_MODE and COAST_MODE)
 """
 
 # drive straight for a set time period (defualt 1 second)
