@@ -45,6 +45,7 @@ def wait_for_button():
 
     print("Button input found; Program starting")
 
+# Cycles through the 3 primary colors (for light) with decreasing brightness
 def test_leds():
     brightness = 1
     while brightness > 0:
