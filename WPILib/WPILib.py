@@ -5,6 +5,7 @@ from . import _reflectance
 #from . import _servo
 from . import _buttons
 from . import _encoded_motor
+from . import _led
 
 import time
 
@@ -22,6 +23,6 @@ _rightMotor = _drivetrain._encoded_motor.EncodedMotor(encoderPinA=_board.GP2, en
 drivetrain = _drivetrain.Drivetrain(_leftMotor, _rightMotor, wheelDiameter=6.5, wheelSpacing=16) # units in cm
 reflectance = _reflectance.Reflectance(_board.GP27, _board.GP26)
 sonar = _grove_ultrasonic.GroveUltrasonicRanger(_board.GP28)
-led = None
+led = _led.RGBLED(_board.GP18)
 #servo = _servo.Servo(_board.GP12, actuationRange = 135)
 buttons = _buttons.Buttons()
