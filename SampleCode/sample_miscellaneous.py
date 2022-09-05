@@ -32,9 +32,9 @@ def test_leds():
 
 # Test moving to both extremes of the servo motion and some middle value
 def test_servo():
-    servo.setDegrees(135)
+    servo.set_degrees(135)
     time.sleep(2)
-    servo.setDegrees(0)
+    servo.set_degrees(0)
     time.sleep(2)
-    servo.setDegrees(60)
+    servo.set_degrees(60)
     time.sleep(2)

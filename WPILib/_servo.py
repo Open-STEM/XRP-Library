@@ -10,5 +10,11 @@ class Servo:
         self._range = actuationRange
         self._servo.actuation_range = self._range # Bound servo motor between [0, actuationRange] degrees
 
-    def setDegrees(self, degrees):
+    def set_degrees(self, degrees: int):
+        """
+            Tells the servo to move to the specified position
+
+            :param degrees: The angle for the servo to move to, bound in [0,135]
+            :type degrees: int
+        """
         self._servo.angle = max(0, min(self._range, degrees))
