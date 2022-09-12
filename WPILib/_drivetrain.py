@@ -169,7 +169,7 @@ class Drivetrain:
         """
         return self.leftMotor.getPos()
 
-def get_right_encoder_position(self) -> float:
+    def get_right_encoder_position(self) -> float:
         """
         Return the current position of the right motor's encoder in degrees.
         """
