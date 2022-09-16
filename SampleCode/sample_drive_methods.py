@@ -43,6 +43,7 @@ def square(sidelength):
     # polygon(sidelength, 4)
 
 # Follow the perimeter of an arbitrary polygon with variable side length and number of sides
+# Side length in centimeters
 def polygon(side_length, number_of_sides):
     for s in range(number_of_sides):
         drivetrain.go_straight(side_length)
