@@ -1,7 +1,6 @@
 from . import _grove_ultrasonic
-from . import _abstract_reflectance
 
-class GroveReflectance(_abstract_reflectance.AbstractReflectance):
+class GroveReflectance():
 
     """
     Supports the old reflectance sensor. A wrapper for the GroveUltrasonic class, because

@@ -1,7 +1,6 @@
 from analogio import AnalogIn
-from . import _abstract_reflectance
 
-class AnalogReflectance(_abstract_reflectance.AbstractReflectance):
+class AnalogReflectance:
 
     """
     Implements for the new reflectance sensor.
