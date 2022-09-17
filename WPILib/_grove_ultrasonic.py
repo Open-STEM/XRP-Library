@@ -105,7 +105,7 @@ class GroveUltrasonicRanger:
 		"""
 		self._unit = unit
 		self._timeout = timeout*TICKS_PER_SEC
-		
+		print("Using pulseio: ", _USE_PULSEIO)
 		if _USE_PULSEIO:
 			self._sig = PulseIn(sig_pin)
 			self._sig.pause()

@@ -9,7 +9,7 @@ class ReflectanceWrapper:
 
     """
     A wrapper for an object that stores either the legacy or new implementation of the reflectance sensor
-    User can switch between the two modes, and get the value of either reflectance sensor
+    User can set one of two modes, and get the value of either reflectance sensor
     """
 
     def __init__(self):
