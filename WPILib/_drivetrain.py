@@ -46,7 +46,7 @@ class Drivetrain:
         Set the space between wheels
 
         :param wheel_spacing: The distance between the drive wheels in centimeters
-        type diameter: float
+        type wheel_spacing: float
         """
 
         self.wheelSpacing = wheel_spacing

@@ -1,7 +1,7 @@
 import board as _board
 from . import _drivetrain
 from . import _grove_ultrasonic
-from . import _reflectance
+from . import _reflectance_wrapper
 from . import _servo
 from . import _buttons
 from . import _encoded_motor
@@ -18,7 +18,7 @@ _rightMotor = _drivetrain._encoded_motor.EncodedMotor(encoderPinA=_board.GP2, en
 
 # Publicly-accessible objects
 drivetrain = _drivetrain.Drivetrain(_leftMotor, _rightMotor) # units in cm
-reflectance = _reflectance.Reflectance(_board.GP26, _board.GP27)
+reflectance = _reflectance_wrapper.ReflectanceWrapper()
 sonar = _grove_ultrasonic.GroveUltrasonicRanger(_board.GP28)
 led = _led.RGBLED(_board.GP18)
 servo = _servo.Servo(_board.GP12, actuationRange = 135)
