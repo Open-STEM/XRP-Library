@@ -9,7 +9,6 @@ class GroveReflectance(_abstract_reflectance.AbstractReflectance):
     """
 
     def __init__(self, leftPin, rightPin):
-        print("init")
         self._leftReflectance = _grove_ultrasonic.GroveUltrasonicRanger(leftPin)
         self._rightReflectance = _grove_ultrasonic.GroveUltrasonicRanger(rightPin)
     
