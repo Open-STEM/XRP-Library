@@ -18,7 +18,7 @@ _rightMotor = _drivetrain._encoded_motor.EncodedMotor(encoderPinA=_board.GP2, en
 
 # Publicly-accessible objects
 drivetrain = _drivetrain.Drivetrain(_leftMotor, _rightMotor) # units in cm
-reflectance = _reflectance.Reflectance(_board.GP27, _board.GP26)
+reflectance = _reflectance.Reflectance(_board.GP26, _board.GP27)
 sonar = _grove_ultrasonic.GroveUltrasonicRanger(_board.GP28)
 led = _led.RGBLED(_board.GP18)
 servo = _servo.Servo(_board.GP12, actuationRange = 135)
