@@ -7,7 +7,6 @@ class Encoder:
         self.ticksPerRev = ticksPerRev
         self.reverse = doFlip
         self.encoder = rotaryio.IncrementalEncoder(pinA, pinB)
-        print("initialized")
 
     def getPos(self) -> float:
         """

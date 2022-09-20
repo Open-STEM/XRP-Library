@@ -103,9 +103,10 @@ class GroveUltrasonicRanger:
 			sensor before assuming it isn't going to answer. Should *not* be
 			set to less than 0.05 seconds!
 		"""
+		print("init grove with ", sig_pin)
 		self._unit = unit
 		self._timeout = timeout*TICKS_PER_SEC
-		
+		print("Using pulseio: ", _USE_PULSEIO)
 		if _USE_PULSEIO:
 			self._sig = PulseIn(sig_pin)
 			self._sig.pause()

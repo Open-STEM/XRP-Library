@@ -14,16 +14,44 @@ def _isTimeout(startTime, timeout):
 
 class Drivetrain:
 
-    def __init__(self, left_encoded_motor, right_encoded_motor, wheel_diameter, wheel_spacing): # wheelDiameter and wheelSpacing in cm
+    def __init__(self, left_encoded_motor, right_encoded_motor): # wheelDiameter and wheelSpacing in cm
 
         self.leftMotor = left_encoded_motor
         self.rightMotor = right_encoded_motor
+
+        self.LEGACY_DIAMETER: float = 6.5 # diameter of old robot wheel in cm
+        self.NEW_DIAMETER: float = 6.5 # diameter of new robot wheel in cm
+
+        self.LEGACY_WHEEL_SPACING = 16 # distance between old robot wheels in cm
+        self.NEW_WHEEL_SPACING = 13.5 # distance between new robot wheels in cm
         
-        self.wheelDiameter = wheel_diameter
-        self.wheelSpacing = wheel_spacing
+        self.wheelDiameter = self.NEW_DIAMETER
+        self.wheelSpacing = self.NEW_WHEEL_SPACING
+        
 
         self.set_encoder_position(0, 0)
 
+    def set_wheel_diameter(self, diameter: float) -> bool:
+        """
+        Set the wheel diameter
+
+        :param diameter: The diameter of the drive wheels in centimeters
+        type diameter: float
+        """
+
+        self.wheelDiameter = diameter
+
+    def set_wheel_spacing(self, wheel_spacing: float) -> bool:
+        """
+        Set the space between wheels
+
+        :param wheel_spacing: The distance between the drive wheels in centimeters
+        type wheel_spacing: float
+        """
+
+        self.wheelSpacing = wheel_spacing
+
+    
 
     # Go forward the specified distance in centimeters, and exit function when distance has been reached.
     # Speed is bounded from -1 (reverse at full speed) to 1 (forward at full speed)
@@ -65,7 +93,6 @@ class Drivetrain:
                 break
 
             error = KP * (leftDelta - rightDelta) # positive if bearing right
-            print("Error:", error, leftDelta, rightDelta, speed)
 
             self.set_effort(speed - error, speed + error)
 
@@ -98,7 +125,7 @@ class Drivetrain:
             speed *= -1
             turn_degrees *= -1
 
-        rotationsToDo = (turn_degrees/360) * (math.pi * self.wheelSpacing) / (self.wheelDiameter * math.pi)
+        rotationsToDo = (turn_degrees/360) * self.wheelSpacing / self.wheelDiameter
 
         startTime = time.time()
         startingLeft = self.get_left_encoder_position()
@@ -117,7 +144,6 @@ class Drivetrain:
                 break
         
             error = KP * (leftDelta + rightDelta)
-            print("Error:", error, leftDelta, rightDelta, speed)
             
             self.set_effort(speed - error, -speed - error)
 
