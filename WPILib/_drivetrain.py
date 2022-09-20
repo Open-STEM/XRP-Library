@@ -91,7 +91,6 @@ class Drivetrain:
                 break
 
             error = KP * (leftDelta - rightDelta) # positive if bearing right
-            print("Error:", error, leftDelta, rightDelta, speed)
 
             self.set_effort(speed - error, speed + error)
 
@@ -141,7 +140,6 @@ class Drivetrain:
                 break
         
             error = KP * (leftDelta + rightDelta)
-            print("Error:", error, leftDelta, rightDelta, speed)
             
             self.set_effort(speed - error, -speed - error)
 

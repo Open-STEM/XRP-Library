@@ -1,5 +1,6 @@
 import pwmio
 from adafruit_motor import servo
+import time
 
 class Servo:
 
@@ -18,3 +19,4 @@ class Servo:
             :type degrees: int
         """
         self._servo.angle = max(0, min(self._range, degrees))
+        time.sleep(0.01) # temporary fix to block request
