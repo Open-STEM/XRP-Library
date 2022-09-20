@@ -75,7 +75,8 @@ class Drivetrain:
             distance *= -1
 
         startTime = time.time()
-        startingLeft, startingRight = self.get_encoder_position()
+        startingLeft = self.get_left_encoder_position()
+        startingRight = self.get_right_encoder_position()
 
         KP = 5
 
@@ -83,7 +84,8 @@ class Drivetrain:
 
         while True:
 
-            leftPosition, rightPosition = self.get_encoder_position()
+            leftPosition = self.get_left_encoder_position()
+            rightPosition = self.get_right_encoder_position()
             leftDelta = leftPosition - startingLeft
             rightDelta = rightPosition - startingRight
 
@@ -126,13 +128,15 @@ class Drivetrain:
         rotationsToDo = (turn_degrees/360) * self.wheelSpacing / self.wheelDiameter
 
         startTime = time.time()
-        startingLeft, startingRight = self.get_encoder_position()
+        startingLeft = self.get_left_encoder_position()
+        startingRight = self.get_right_encoder_position()
 
         KP = 5
 
         while True:
 
-            leftPosition, rightPosition = self.get_encoder_position()
+            leftPosition = self.get_left_encoder_position()
+            rightPosition = self.get_right_encoder_position()
             leftDelta = leftPosition - startingLeft
             rightDelta = rightPosition - startingRight
 
@@ -185,8 +189,14 @@ class Drivetrain:
         self.leftMotor.setPos(left_degrees)
         self.rightMotor.setPos(right_degrees)
 
-    def get_encoder_position(self) -> tuple:
+    def get_left_encoder_position(self) -> float:
         """
-        Return the current position of left and right motors' encoders in degrees as a tuple.
+        Return the current position of the left motor's encoder in degrees.
         """
-        return self.leftMotor.getPos(),self.rightMotor.getPos()
+        return self.leftMotor.getPos()
+
+    def get_right_encoder_position(self) -> float:
+        """
+        Return the current position of the right motor's encoder in degrees.
+        """
+        return self.rightMotor.getPos()
