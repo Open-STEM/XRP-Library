@@ -1,5 +1,4 @@
 from . import _grove_ultrasonic
-import digitalio
 
 class GroveReflectance():
 
@@ -9,12 +8,8 @@ class GroveReflectance():
     """
 
     def __init__(self, leftPin, rightPin):
-        #self._leftReflectance = _grove_ultrasonic.GroveUltrasonicRanger(leftPin, timeout = 5)
-        #self._rightReflectance = _grove_ultrasonic.GroveUltrasonicRanger(rightPin, timeout = 5)
-        self._leftReflectance = digitalio.DigitalInOut(leftPin)
-        self._rightReflectance = digitalio.DigitalInOut(rightPin)
-        self._leftReflectance.direction = digitalio.Direction.INPUT
-        self._rightReflectance.direction = digitalio.Direction.INPUT
+        self._leftReflectance = _grove_ultrasonic.GroveUltrasonicRanger(leftPin, timeout = 1)
+        self._rightReflectance = _grove_ultrasonic.GroveUltrasonicRanger(rightPin, timeout = 1)
     
     # Implements AbstractReflectance
     def get_left_reflectance(self) -> float:
@@ -23,8 +18,7 @@ class GroveReflectance():
         :return: The reflectance ranging from 0 (white) to 1 (black)
         :rtype: float
         """
-        #return self._leftReflectance.get_distance()
-        return self._leftReflectance.value
+        return self._leftReflectance.get_distance()
     
     # Implements AbstractReflectance
     def get_right_reflectance(self) -> float:
@@ -33,5 +27,4 @@ class GroveReflectance():
         :return: The reflectance ranging from 0 (white) to 1 (black)
         :rtype: float
         """
-        #return self._rightReflectance.get_distance()
-        return self._rightReflectance.value
+        return self._rightReflectance.get_distance()
