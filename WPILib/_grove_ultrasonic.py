@@ -68,7 +68,7 @@ __version__ = "1.0.0"
 __repo__ = "https://github.com/derhexenmeister/GroveUltrasonicRanger.git"
 
 
-class GroveUltrasonicRanger:
+class GroveUltrasonic:
 	"""Control a Grove ultrasonic range sensor.
 
 	Example use:

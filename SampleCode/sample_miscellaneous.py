@@ -1,3 +1,5 @@
+from SampleCode.sample_drive_methods import square
+from SampleCode.sample_sensor_access import line_track
 from WPILib.WPILib import *
 
 """
@@ -13,6 +15,10 @@ def wait_for_button():
     while not (buttons.is_GP20_pressed() or buttons.is_GP21_pressed()):
         time.sleep(.01)
 
+    # Wait until user to release button before running
+    while (buttons.is_GP20_pressed() or buttons.is_GP21_pressed()):
+        time.sleep(.01)
+
     print("Button input found; Program starting")
 
 # Cycles through the 3 primary colors (for light) with decreasing brightness
@@ -26,7 +32,7 @@ def test_leds():
         time.sleep(0.5)
         led.set_color(0,0,255)
         time.sleep(0.5)
-        brightness -= 0.1
+        brightness -= 0.25
     led.set_color(0,0,0)
     led.set_brightness(0)
 
@@ -38,3 +44,24 @@ def test_servo():
     time.sleep(2)
     servo.set_degrees(60)
     time.sleep(2)
+
+# Installation Verification Program
+def ivp():
+    while not buttons.is_GP20_pressed() and not buttons.is_GP21_pressed():
+        print(f"Left Reflectance: {reflectance.get_left_reflectance()}, Right Reflectance: {reflectance.get_right_reflectance()}")
+        time.sleep(0.1)
+    while (buttons.is_GP20_pressed() or buttons.is_GP21_pressed()):
+        time.sleep(.01)
+    while not buttons.is_GP20_pressed() and not buttons.is_GP21_pressed():
+        print(f"Ultrasonic Distance: {sonar.get_distance()}")
+        time.sleep(0.1)
+    while (buttons.is_GP20_pressed() or buttons.is_GP21_pressed()):
+        time.sleep(.01)
+    print("Testing Servo")
+    test_servo()
+    print("Testing LEDs")
+    wait_for_button()
+    test_leds()
+    print("Testing Drivetrain:")
+    wait_for_button()
+    square(10)

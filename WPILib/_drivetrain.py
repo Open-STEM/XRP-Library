@@ -19,39 +19,43 @@ class Drivetrain:
         self.leftMotor = left_encoded_motor
         self.rightMotor = right_encoded_motor
 
-        self.LEGACY_DIAMETER: float = 6.5 # diameter of old robot wheel in cm
-        self.NEW_DIAMETER: float = 6.5 # diameter of new robot wheel in cm
+        self._LEGACY_DIAMETER: float = 6.5 # diameter of old robot wheel in cm
+        self._NEW_DIAMETER: float = 6.5 # diameter of new robot wheel in cm
 
-        self.LEGACY_WHEEL_SPACING = 16 # distance between old robot wheels in cm
-        self.NEW_WHEEL_SPACING = 13.5 # distance between new robot wheels in cm
+        self._LEGACY_WHEEL_SPACING: float = 16 # distance between old robot wheels in cm
+        self._NEW_WHEEL_SPACING: float = 13.5 # distance between new robot wheels in cm
         
-        self.wheelDiameter = self.NEW_DIAMETER
-        self.wheelSpacing = self.NEW_WHEEL_SPACING
+        self.wheelDiameter = self._NEW_DIAMETER
+        self.wheelSpacing = self._NEW_WHEEL_SPACING
         
 
         self.set_encoder_position(0, 0)
 
-    def set_wheel_diameter(self, diameter: float) -> bool:
+    def _set_wheel_diameter(self, diameter: float) -> bool:
         """
         Set the wheel diameter
 
         :param diameter: The diameter of the drive wheels in centimeters
         type diameter: float
         """
-
         self.wheelDiameter = diameter
 
-    def set_wheel_spacing(self, wheel_spacing: float) -> bool:
+    def _set_wheel_spacing(self, wheel_spacing: float) -> bool:
         """
         Set the space between wheels
 
         :param wheel_spacing: The distance between the drive wheels in centimeters
         type wheel_spacing: float
         """
-
         self.wheelSpacing = wheel_spacing
 
-    
+    def set_legacy_mode(self, is_legacy: bool = True):
+        if is_legacy:
+            self._set_wheel_diameter(self._LEGACY_DIAMETER)
+            self._set_wheel_spacing(self._LEGACY_WHEEL_SPACING)
+        else:
+            self._set_wheel_diameter(self._NEW_DIAMETER)
+            self._set_wheel_spacing(self._NEW_WHEEL_SPACING)
 
     # Go forward the specified distance in centimeters, and exit function when distance has been reached.
     # Speed is bounded from -1 (reverse at full speed) to 1 (forward at full speed)

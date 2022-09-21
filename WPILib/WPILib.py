@@ -1,6 +1,6 @@
 import board as _board
 from . import _drivetrain
-from . import _grove_ultrasonic
+from . import _ultrasonic_wrapper
 from . import _reflectance_wrapper
 from . import _servo
 from . import _buttons
@@ -19,7 +19,12 @@ _rightMotor = _drivetrain._encoded_motor.EncodedMotor(encoderPinA=_board.GP2, en
 # Publicly-accessible objects
 drivetrain = _drivetrain.Drivetrain(_leftMotor, _rightMotor) # units in cm
 reflectance = _reflectance_wrapper.ReflectanceWrapper()
-sonar = _grove_ultrasonic.GroveUltrasonicRanger(_board.GP28)
+sonar = _ultrasonic_wrapper.UltrasonicWrapper()
 led = _led.RGBLED(_board.GP18)
 servo = _servo.Servo(_board.GP12, actuationRange = 135)
 buttons = _buttons.Buttons()
+
+def set_legacy_mode(is_legacy: bool = True):
+    drivetrain.set_legacy_mode(is_legacy)
+    sonar.set_legacy_mode(is_legacy)
+    reflectance.set_legacy_mode(is_legacy)
