@@ -1,10 +1,10 @@
-# Write your code here :-)
+
 import rotaryio
 
 class Encoder:
 
     def __init__(self, pinA, pinB, ticksPerRev, doFlip=False):
-        self.ticksPerRev = ticksPerRev
+        self.ticksPerDeg = ticksPerRev/360
         self.reverse = doFlip
         self.encoder = rotaryio.IncrementalEncoder(pinA, pinB)
 
@@ -12,15 +12,10 @@ class Encoder:
         """
         Retrieves the position of the encoder in degrees
 
-        :param inTicks: If true, returns in encoder ticks; If false, returns in rotations
-        :type inTicks: bool
-        :param roundTo: The number of decimal places to round the encoder position to
-        :type roundTo: int
-
-        :return: The position of the encoder
+        :return: The position of the encoder in degrees
         :rtype: float
         """
-        r = self.encoder.position / self.ticksPerRev
+        r = self.encoder.position / self.ticksPerDeg
         if self.reverse:
             return -r
         else:
@@ -34,6 +29,6 @@ class Encoder:
         :type pos: float
         :return: void
         """
-        self.encoder.position = round(pos * self.ticksPerRev)
+        self.encoder.position = round(pos * self.ticksPerDeg)
 
 
