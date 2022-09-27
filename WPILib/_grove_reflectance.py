@@ -8,8 +8,8 @@ class GroveReflectance():
     """
 
     def __init__(self, leftPin, rightPin):
-        self._leftReflectance = _grove_ultrasonic.GroveUltrasonicRanger(leftPin, timeout = 1)
-        self._rightReflectance = _grove_ultrasonic.GroveUltrasonicRanger(rightPin, timeout = 1)
+        self._leftReflectance = _grove_ultrasonic.GroveUltrasonic(leftPin, timeout = 1)
+        self._rightReflectance = _grove_ultrasonic.GroveUltrasonic(rightPin, timeout = 1)
     
     # Implements AbstractReflectance
     def get_left_reflectance(self) -> float:
