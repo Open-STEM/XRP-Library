@@ -33,6 +33,17 @@ def standoff(target_distance: float = 10.0):
         drivetrain.set_effort(error * KP, error*KP)
         time.sleep(0.01)
 
+# Maintains a certain distance from the wall while driving
+#     using proportional control (sensor on right side of robot this time)
+def wall_follow(target_distance: float = 10.0):
+    KP = 0.1
+    base_speed = 0.5
+    while True:
+        distance = sonar.get_distance()
+        error = distance - target_distance
+        drivetrain.set_effort(base_speed + error * KP, base_speed - error*KP)
+        time.sleep(0.01)
+
 # Follows a line using the line followers
 def line_track():
     base_effort = 0.6

@@ -1,4 +1,3 @@
-# Write your code here :-)
 from adafruit_motor import motor
 import pwmio
 import time
