@@ -31,4 +31,5 @@ class Encoder:
         """
         self.encoder.position = round(pos * self.ticksPerRev)
 
-
+    def _set_encoder_ticks_per_rev(self, ticks_per_revolution: int):
+        self.ticksPerRev = ticks_per_revolution

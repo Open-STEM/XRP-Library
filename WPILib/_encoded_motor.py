@@ -7,7 +7,7 @@ class EncodedMotor:
     def __init__(self, encoderPinA, encoderPinB , motorPin1, motorPin2, Name="Motor Unnamed", doFlip=False):
         
         self.name = Name
-        self.encoder = _encoder.Encoder(pinA=encoderPinA, pinB=encoderPinB, ticksPerRev=144, doFlip=doFlip)
+        self.encoder = _encoder.Encoder(pinA=encoderPinA, pinB=encoderPinB, ticksPerRev=288, doFlip=doFlip)
         self.flip = doFlip
         
         MA = pwmio.PWMOut(motorPin1, frequency=10000)
@@ -38,3 +38,6 @@ class EncodedMotor:
 
     def setPos(self, pos: float = 0) -> None:
         self.encoder.setPos(pos)
+
+    def _set_encoder_ticks_per_rev(self, ticks_per_revolution: int):
+        self.encoder._set_encoder_ticks_per_rev(ticks_per_revolution)

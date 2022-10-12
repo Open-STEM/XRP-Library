@@ -25,13 +25,16 @@ class Drivetrain:
         self._LEGACY_WHEEL_SPACING: float = 16 # distance between old robot wheels in cm
         self._NEW_WHEEL_SPACING: float = 13.5 # distance between new robot wheels in cm
         
+        self._LEGACY_TICKS_PER_REV: int = 144 # distance between old robot wheels in cm
+        self._NEW_TICKS_PER_REV: int = 288 # distance between new robot wheels in cm
+
         self.wheelDiameter = self._NEW_DIAMETER
         self.wheelSpacing = self._NEW_WHEEL_SPACING
         
 
         self.set_encoder_position(0, 0)
 
-    def _set_wheel_diameter(self, diameter: float) -> bool:
+    def _set_wheel_diameter(self, diameter: float):
         """
         Set the wheel diameter
 
@@ -40,7 +43,7 @@ class Drivetrain:
         """
         self.wheelDiameter = diameter
 
-    def _set_wheel_spacing(self, wheel_spacing: float) -> bool:
+    def _set_wheel_spacing(self, wheel_spacing: float):
         """
         Set the space between wheels
 
@@ -49,13 +52,25 @@ class Drivetrain:
         """
         self.wheelSpacing = wheel_spacing
 
+    def _set_encoder_ticks_per_rev(self, ticks_per_revolution: int):
+        """
+        Set the space between wheels
+
+        :param ticks_per_revolution: The number of encoder ticks per full revolution of the wheel
+        type ticks_per_revolution: int
+        """
+        self.leftMotor._set_encoder_ticks_per_rev(ticks_per_revolution)
+        self.rightMotor._set_encoder_ticks_per_rev(ticks_per_revolution)
+
     def set_legacy_mode(self, is_legacy: bool = True):
         if is_legacy:
             self._set_wheel_diameter(self._LEGACY_DIAMETER)
             self._set_wheel_spacing(self._LEGACY_WHEEL_SPACING)
+            self._set_encoder_ticks_per_rev(self._LEGACY_TICKS_PER_REV)
         else:
             self._set_wheel_diameter(self._NEW_DIAMETER)
             self._set_wheel_spacing(self._NEW_WHEEL_SPACING)
+            self._set_encoder_ticks_per_rev(self._NEW_TICKS_PER_REV)
 
     # Go forward the specified distance in centimeters, and exit function when distance has been reached.
     # Speed is bounded from -1 (reverse at full speed) to 1 (forward at full speed)
