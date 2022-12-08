@@ -64,4 +64,4 @@ def ivp():
     test_leds()
     print("Testing Drivetrain:")
     wait_for_button()
-    square(10)
+    square(20)

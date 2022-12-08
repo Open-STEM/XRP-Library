@@ -4,10 +4,10 @@ import time
 from . import _encoder
 
 class EncodedMotor:
-    def __init__(self, encoderPinA, encoderPinB , motorPin1, motorPin2, Name="Motor Unnamed", doFlip=False):
+    def __init__(self, encoderPinA, encoderPinB , motorPin1, motorPin2, Name="Motor Unnamed", doFlip=False, ticksPerRev=288):
         
         self.name = Name
-        self.encoder = _encoder.Encoder(pinA=encoderPinA, pinB=encoderPinB, ticksPerRev=288, doFlip=doFlip)
+        self.encoder = _encoder.Encoder(pinA=encoderPinA, pinB=encoderPinB, ticksPerRev=ticksPerRev, doFlip=doFlip)
         self.flip = doFlip
         
         MA = pwmio.PWMOut(motorPin1, frequency=10000)

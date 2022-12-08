@@ -14,7 +14,7 @@ def _isTimeout(startTime, timeout):
 
 class Drivetrain:
 
-    def __init__(self, left_encoded_motor, right_encoded_motor): # wheelDiameter and wheelSpacing in cm
+    def __init__(self, left_encoded_motor: _encoded_motor, right_encoded_motor: _encoded_motor): # wheelDiameter and wheelSpacing in cm
 
         self.leftMotor = left_encoded_motor
         self.rightMotor = right_encoded_motor
