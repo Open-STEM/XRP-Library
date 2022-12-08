@@ -33,7 +33,7 @@ class ReflectanceWrapper:
         if self._isLegacyMode:
             self._reflectanceObject = _grove_reflectance.GroveReflectance(board.GP26, board.GP27)
         else:
-            self._reflectanceObject = _analog_reflectance.AnalogReflectance(board.GP26, board.GP27)
+            self._reflectanceObject = _analog_reflectance.AnalogReflectance(board.GP27, board.GP26)
         
     
     def get_left_reflectance(self) -> float:
