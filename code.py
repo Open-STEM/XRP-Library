@@ -7,7 +7,6 @@ from SampleCode.sample_miscellaneous import *
 
 def main():
     wait_for_button()
-    line_track()
     #
     # Your code goes here!
     #
