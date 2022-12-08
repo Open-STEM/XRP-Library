@@ -41,15 +41,16 @@ def wall_follow(target_distance: float = 10.0):
     while True:
         distance = sonar.get_distance()
         error = distance - target_distance
+        print(error)
         drivetrain.set_effort(base_speed + error * KP, base_speed - error*KP)
         time.sleep(0.01)
 
 # Follows a line using the line followers
 def line_track():
     base_effort = 0.6
-    KP = 0.4
+    KP = 0.6
     while True:
         error = reflectance.get_left_reflectance() - reflectance.get_right_reflectance()
         print(error)
         drivetrain.set_effort(base_effort - error * KP, base_effort + error * KP)
-        time.sleep(0.1)
+        time.sleep(0.01)
