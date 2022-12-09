@@ -37,8 +37,8 @@ def circle():
 # Follow the perimeter of a square with variable sidelength
 def square(sidelength):
     for sides in range(4):
-        drivetrain.go_straight(sidelength)
-        drivetrain.go_turn(90)
+        drivetrain.straight(sidelength)
+        drivetrain.turn(90)
     # Alternatively:
     # polygon(sidelength, 4)
 
@@ -46,26 +46,26 @@ def square(sidelength):
 # Side length in centimeters
 def polygon(side_length, number_of_sides):
     for s in range(number_of_sides):
-        drivetrain.go_straight(side_length)
-        drivetrain.go_turn(360/number_of_sides)
+        drivetrain.straight(side_length)
+        drivetrain.turn(360/number_of_sides)
 
 # A slightly longer example program showing how a robot may follow a simple path
 def test_drive():
     # Drive forward cm
-    drivetrain.go_straight(25, 0.8)
+    drivetrain.straight(25, 0.8)
 
     time.sleep(1)
 
     # turn 90 degrees clockwise
-    drivetrain.go_turn(90,0.8)
+    drivetrain.turn(90,0.8)
 
     time.sleep(1)
 
     # turn 90 degrees counter clockwise by setting speed negative
-    drivetrain.go_turn(90, -0.8)
+    drivetrain.turn(90, -0.8)
 
     time.sleep(1)
 
     # drive backwards 25 cm by setting distance negative.
     # There is no difference between setting speed or distance negative, both work
-    drivetrain.go_straight(-25,0.8)
+    drivetrain.straight(-25,0.8)

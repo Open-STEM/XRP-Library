@@ -16,7 +16,7 @@ class AnalogReflectance:
         return sensor.value / MAX_ANALOG_VALUE
     
     # Implements AbstractReflectance
-    def get_left_reflectance(self) -> float:
+    def get_left(self) -> float:
         """
         Gets the the reflectance of the left reflectance sensor
         :return: The reflectance ranging from 0 (white) to 1 (black)
@@ -25,7 +25,7 @@ class AnalogReflectance:
         return self._get_value(self._leftReflectance)
     
     # Implements AbstractReflectance
-    def get_right_reflectance(self) -> float:
+    def get_right(self) -> float:
         """
         Gets the the reflectance of the right reflectance sensor
         :return: The reflectance ranging from 0 (white) to 1 (black)

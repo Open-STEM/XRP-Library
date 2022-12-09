@@ -50,7 +50,7 @@ def line_track():
     base_effort = 0.6
     KP = 0.6
     while True:
-        error = reflectance.get_left_reflectance() - reflectance.get_right_reflectance()
+        error = reflectance.get_left() - reflectance.get_right()
         print(error)
         drivetrain.set_effort(base_effort - error * KP, base_effort + error * KP)
         time.sleep(0.01)

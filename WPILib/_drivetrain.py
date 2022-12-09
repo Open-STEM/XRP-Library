@@ -74,7 +74,7 @@ class Drivetrain:
 
     # Go forward the specified distance in centimeters, and exit function when distance has been reached.
     # Speed is bounded from -1 (reverse at full speed) to 1 (forward at full speed)
-    def go_straight(self, distance: float, speed: float = 0.5, timeout: float = None) -> bool:
+    def straight(self, distance: float, speed: float = 0.5, timeout: float = None) -> bool:
         """
         Go forward the specified distance in centimeters, and exit function when distance has been reached.
         Speed is bounded from -1 (reverse at full speed) to 1 (forward at full speed)
@@ -124,7 +124,7 @@ class Drivetrain:
         else:
             return time.time() < startTime+timeout
 
-    def go_turn(self, turn_degrees: float, speed: float = 0.5, timeout: float = None) -> bool:
+    def turn(self, turn_degrees: float, speed: float = 0.5, timeout: float = None) -> bool:
         """
         Turn the robot some relative heading given in turnDegrees, and exit function when the robot has reached that heading.
         Speed is bounded from -1 (turn counterclockwise the relative heading at full speed) to 1 (turn clockwise the relative heading at full speed)

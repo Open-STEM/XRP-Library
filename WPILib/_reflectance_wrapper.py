@@ -36,21 +36,21 @@ class ReflectanceWrapper:
             self._reflectanceObject = _analog_reflectance.AnalogReflectance(board.GP27, board.GP26)
         
     
-    def get_left_reflectance(self) -> float:
+    def get_left(self) -> float:
         """
         Gets the the reflectance of the left reflectance sensor
         :return: The reflectance ranging from 0 (white) to 1 (black)
         :rtype: float
         """
         self._possibly_instantiate_object()
-        return self._reflectanceObject.get_left_reflectance()
+        return self._reflectanceObject.get_left()
     
 
-    def get_right_reflectance(self) -> float:
+    def get_right(self) -> float:
         """
         Gets the the reflectance of the right reflectance sensor
         :return: The reflectance ranging from 0 (white) to 1 (black)
         :rtype: float
         """
         self._possibly_instantiate_object()
-        return self._reflectanceObject.get_right_reflectance()
+        return self._reflectanceObject.get_right()
