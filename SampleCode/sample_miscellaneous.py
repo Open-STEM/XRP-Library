@@ -48,7 +48,7 @@ def test_servo():
 # Installation Verification Program
 def ivp():
     while not buttons.is_GP20_pressed() and not buttons.is_GP21_pressed():
-        print(f"Left Reflectance: {reflectance.get_left_reflectance()}, Right Reflectance: {reflectance.get_right_reflectance()}")
+        print(f"Left Reflectance: {reflectance.get_left()}, Right Reflectance: {reflectance.get_right()}")
         time.sleep(0.1)
     while (buttons.is_GP20_pressed() or buttons.is_GP21_pressed()):
         time.sleep(.01)
