@@ -1,14 +1,8 @@
 from WPILib.WPILib import *
 
-## Optional imports for use with sample code
 from SampleCode.sample_drive_methods import *
-from SampleCode.sample_sensor_access import *
 from SampleCode.sample_miscellaneous import *
+from SampleCode.sample_sensor_access import *
 
-def main():
-    wait_for_button()
-    #
-    # Your code goes here!
-    #
+ivp()
 
-main()

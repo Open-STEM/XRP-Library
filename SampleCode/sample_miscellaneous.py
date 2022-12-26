@@ -1,4 +1,4 @@
-from SampleCode.sample_drive_methods import square
+from SampleCode.sample_drive_methods import test_drive
 from SampleCode.sample_sensor_access import line_track
 from WPILib.WPILib import *
 
@@ -64,4 +64,4 @@ def ivp():
     test_leds()
     print("Testing Drivetrain:")
     wait_for_button()
-    square(20)
+    test_drive()
