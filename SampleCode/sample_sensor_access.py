@@ -50,6 +50,7 @@ def line_track():
     base_effort = 0.6
     KP = 0.6
     while True:
+        # You always want to take the difference of the sensors because the raw value isn't always consistent.
         error = reflectance.get_left() - reflectance.get_right()
         print(error)
         drivetrain.set_effort(base_effort - error * KP, base_effort + error * KP)

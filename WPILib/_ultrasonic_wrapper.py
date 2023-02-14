@@ -2,8 +2,7 @@ from . import _adafruit_hcsr04
 from . import _grove_ultrasonic
 import board
 
-class UltrasonicWrapper:
-
+class Ultrasonic:
     """
     A wrapper for an object that stores either the legacy or new implementation of the ultrasonic sensor
     User can set one of two modes, and get the value of either ultrasonic sensor

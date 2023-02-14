@@ -2,7 +2,7 @@ from . import _analog_reflectance
 from . import _grove_reflectance
 import board
 
-class ReflectanceWrapper:
+class Reflectance:
 
     """
     A wrapper for an object that stores either the legacy or new implementation of the reflectance sensor
