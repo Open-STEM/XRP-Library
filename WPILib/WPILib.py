@@ -1,11 +1,11 @@
 import board as _board
-from _drivetrain import Drivetrain
-from _encoded_motor import EncodedMotor
-from _ultrasonic_wrapper import Ultrasonic
-from _reflectance_wrapper import Reflectance
-from _servo import Servo
-from _buttons import Buttons
-from _led import RGBLED
+from . import _drivetrain
+from . import _ultrasonic_wrapper
+from . import _reflectance_wrapper
+from . import _servo
+from . import _buttons
+from . import _encoded_motor
+from . import _led
 
 import time
 
@@ -14,7 +14,7 @@ import time
 If you need to change the encoder counts, alter the ticksPerRev values in the following two constructors.
 Most robots have either 144 or 288 ticks per revolution, depending on which motors are used.
 """
-_leftMotor = EncodedMotor(
+_leftMotor = _encoded_motor.EncodedMotor(
     encoderPinA=_board.GP4, 
     encoderPinB=_board.GP5,
     motorPin1=_board.GP8, 
@@ -22,7 +22,7 @@ _leftMotor = EncodedMotor(
     doFlip=True, 
     ticksPerRev=288)
 
-_rightMotor = EncodedMotor(
+_rightMotor = _encoded_motor.EncodedMotor(
     encoderPinA=_board.GP2, 
     encoderPinB=_board.GP3,
     motorPin1=_board.GP10, 
@@ -31,12 +31,12 @@ _rightMotor = EncodedMotor(
     ticksPerRev=288)
 
 # Publicly-accessible objects
-drivetrain = Drivetrain(_leftMotor, _rightMotor) # units in cm
-reflectance = Reflectance()
-sonar = Ultrasonic()
-led = RGBLED(_board.GP18)
-servo = Servo(_board.GP12, actuationRange = 135)
-buttons = Buttons()
+drivetrain = _drivetrain.Drivetrain(_leftMotor, _rightMotor) # units in cm
+reflectance = _reflectance_wrapper.Reflectance()
+sonar = _ultrasonic_wrapper.Ultrasonic()
+led = _led.RGBLED(_board.GP18)
+servo = _servo.Servo(_board.GP12, actuationRange = 135)
+buttons = _buttons.Buttons()
 
 def set_legacy_mode(is_legacy: bool = True):
     drivetrain.set_legacy_mode(is_legacy)
