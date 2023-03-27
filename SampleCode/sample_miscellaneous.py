@@ -55,13 +55,16 @@ def ivp():
     while not buttons.is_GP20_pressed() and not buttons.is_GP21_pressed():
         print(f"Ultrasonic Distance: {sonar.get_distance()}")
         time.sleep(0.1)
-    while (buttons.is_GP20_pressed() or buttons.is_GP21_pressed()):
-        time.sleep(.01)
+    wait_for_button()
     print("Testing Servo")
     test_servo()
     print("Testing LEDs")
     wait_for_button()
     test_leds()
+    print("Testing Motor Encoders:")
+    while not buttons.is_GP20_pressed() and not buttons.is_GP21_pressed():
+        print(f"Left: {drivetrain.get_left_encoder_position()}, Right: {drivetrain.get_right_encoder_position()}")
+        time.sleep(0.1)
     print("Testing Drivetrain:")
     wait_for_button()
     test_drive()
