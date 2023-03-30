@@ -27,12 +27,12 @@ def test_leds():
     while brightness > 0:
         led.set_brightness(brightness)
         led.set_color(255,0,0)
-        time.sleep(0.5)
+        time.sleep(0.33)
         led.set_color(0,255,0)
-        time.sleep(0.5)
+        time.sleep(0.33)
         led.set_color(0,0,255)
-        time.sleep(0.5)
-        brightness -= 0.25
+        time.sleep(0.33)
+        brightness -= 0.5
     led.set_color(0,0,0)
     led.set_brightness(0)
 
