@@ -27,12 +27,12 @@ def test_leds():
     while brightness > 0:
         led.set_brightness(brightness)
         led.set_color(255,0,0)
-        time.sleep(0.5)
+        time.sleep(0.33)
         led.set_color(0,255,0)
-        time.sleep(0.5)
+        time.sleep(0.33)
         led.set_color(0,0,255)
-        time.sleep(0.5)
-        brightness -= 0.25
+        time.sleep(0.33)
+        brightness -= 0.5
     led.set_color(0,0,0)
     led.set_brightness(0)
 
@@ -51,17 +51,23 @@ def ivp():
         print(f"Left Reflectance: {reflectance.get_left()}, Right Reflectance: {reflectance.get_right()}")
         time.sleep(0.1)
     while (buttons.is_GP20_pressed() or buttons.is_GP21_pressed()):
+        # Wait until user to release button before continuing
         time.sleep(.01)
     while not buttons.is_GP20_pressed() and not buttons.is_GP21_pressed():
         print(f"Ultrasonic Distance: {sonar.get_distance()}")
         time.sleep(0.1)
     while (buttons.is_GP20_pressed() or buttons.is_GP21_pressed()):
+        # Wait until user to release button before continuing
         time.sleep(.01)
     print("Testing Servo")
     test_servo()
     print("Testing LEDs")
     wait_for_button()
     test_leds()
+    print("Testing Motor Encoders:")
+    while not buttons.is_GP20_pressed() and not buttons.is_GP21_pressed():
+        print(f"Left: {drivetrain.get_left_encoder_position()}, Right: {drivetrain.get_right_encoder_position()}")
+        time.sleep(0.1)
     print("Testing Drivetrain:")
     wait_for_button()
     test_drive()

@@ -1,11 +1,11 @@
 import board as _board
-from _drivetrain import Drivetrain
-from _encoded_motor import EncodedMotor
-from _ultrasonic_wrapper import Ultrasonic
-from _reflectance_wrapper import Reflectance
-from _servo import Servo
-from _buttons import Buttons
-from _led import RGBLED
+from ._drivetrain import Drivetrain
+from ._ultrasonic_wrapper import Ultrasonic
+from ._reflectance_wrapper import Reflectance
+from ._servo import Servo
+from ._buttons import Buttons
+from ._encoded_motor import EncodedMotor
+from ._led import RGBLED
 
 import time
 
