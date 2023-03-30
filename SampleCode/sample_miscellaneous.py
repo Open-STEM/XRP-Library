@@ -51,11 +51,14 @@ def ivp():
         print(f"Left Reflectance: {reflectance.get_left()}, Right Reflectance: {reflectance.get_right()}")
         time.sleep(0.1)
     while (buttons.is_GP20_pressed() or buttons.is_GP21_pressed()):
+        # Wait until user to release button before continuing
         time.sleep(.01)
     while not buttons.is_GP20_pressed() and not buttons.is_GP21_pressed():
         print(f"Ultrasonic Distance: {sonar.get_distance()}")
         time.sleep(0.1)
-    wait_for_button()
+    while (buttons.is_GP20_pressed() or buttons.is_GP21_pressed()):
+        # Wait until user to release button before continuing
+        time.sleep(.01)
     print("Testing Servo")
     test_servo()
     print("Testing LEDs")
